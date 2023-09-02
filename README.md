@@ -1,24 +1,10 @@
-# projectmercenary
+# Project Mercenary
 
-## Project setup
-```
-npm install
-```
+mer·cen·ary  
+&nbsp;1. [noun] a professional soldier hired to serve in a foreign army  
+&nbsp;2. [adjective] primarily concerned with making money at the expense of ethics    
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Stack
+<b>Front</b> : Vue.js  
+<b>Back</b> : Express.js  
+<b>DB</b> : MySQL (추후 MongoDB)  
