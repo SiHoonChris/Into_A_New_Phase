@@ -19,55 +19,55 @@
 <script>
 export default {
   mounted(){
-    const contents = document.querySelectorAll('#contents div');
-    for(const i in contents) {
-      setInterval(()=>{
-        setTimeout(()=>{
-          contents[i].removeAttribute('style');
-          contents[i].style.transform="translateX(-" + String(14*(i+1)) + "vw)";
-          contents[i].style.transition = String(2*(i+1)) + "s linear";
-        });
-        setTimeout(()=>{
-          contents[i].removeAttribute('style');
-          contents[i].style.transform="translateX(" + String(14*(i+10)) + "vw)";
-        }, 2000);
-        setTimeout(()=>{
-          contents[i].removeAttribute('style');
-          contents[i].style.transform="translateX(-" + String(14*(i+1)) + "vw)";
-          contents[i].style.transition = String(2*(i+10)) + "s linear";
-          contents[i].removeAttribute('style');
-        }, 2100);
-      }, 20000);
-    }
-
-    // setInterval(()=>{
-    //   try {
-    //     const contents = document.querySelectorAll('#contents div')
-    //     const clone = document.querySelector('#contents div:first-child').cloneNode(true)
+    // const contents = document.querySelectorAll('#contents div');
+    // for(const i in contents) {
+    //   setInterval(()=>{
     //     setTimeout(()=>{
-    //       for(const i in contents){
-    //         if(i>0){
-    //           contents[i].style.transform="translateX(-14vw)"
-    //           contents[i].style.transition="2.0s linear"
-    //         }
-    //       }
+    //       contents[i].removeAttribute('style');
+    //       contents[i].style.transform="translateX(-" + String(14*(i+1)) + "vw)";
+    //       contents[i].style.transition = String(2*(i+1)) + "s linear";
     //     });
     //     setTimeout(()=>{
-    //       try {
-    //         document.querySelector("#contents").appendChild(clone)
-    //         contents[0].remove()
-    //         for(const i in contents){
-    //           if(i>0) contents[i].removeAttribute('style')
-    //         }
-    //       } catch(err) {
-    //         console.log(err)
-    //       }
-    //     }, 2000)
-    //   }
-    //   catch(e) {
-    //     console.log("IGNORE THIS ERROR : " + e);
-    //   }
-    // }, 4000);
+    //       contents[i].removeAttribute('style');
+    //       contents[i].style.transform="translateX(" + String(14*(i+10)) + "vw)";
+    //     }, 2000);
+    //     setTimeout(()=>{
+    //       contents[i].removeAttribute('style');
+    //       contents[i].style.transform="translateX(-" + String(14*(i+1)) + "vw)";
+    //       contents[i].style.transition = String(2*(i+10)) + "s linear";
+    //       contents[i].removeAttribute('style');
+    //     }, 2100);
+    //   }, 20000);
+    // }
+
+    setInterval(()=>{
+      try {
+        const contents = document.querySelectorAll('#contents div')
+        const clone = document.querySelector('#contents div:first-child').cloneNode(true)
+        setTimeout(()=>{
+          for(const i in contents){
+            if(i>0){
+              contents[i].style.transform="translateX(-14vw)"
+              contents[i].style.transition="2.0s linear"
+            }
+          }
+        });
+        setTimeout(()=>{
+          try {
+            document.querySelector("#contents").appendChild(clone)
+            contents[0].remove()
+            for(const i in contents){
+              if(i>0) contents[i].removeAttribute('style')
+            }
+          } catch(err) {
+            console.log(err)
+          }
+        }, 2000)
+      }
+      catch(e) {
+        console.log("IGNORE THIS ERROR : " + e);
+      }
+    }, 4000);
   }
 }
 </script>
@@ -80,7 +80,7 @@ export default {
     height: 8vh;
     display: flex;
     justify-content: left;
-    /* transform: translateX(-14vw); */
+    transform: translateX(-14vw);
 }
 #contents div {
     width: 14vw;

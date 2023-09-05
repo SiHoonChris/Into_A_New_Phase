@@ -28,7 +28,7 @@ export default {
       Assets: ["Apple.Inc", "Samsung Electric", "Microsoft", "JEPI", "Google" , "QYLD"],
       States: ["BULL", "BEAR", "UNDECIDED"]
     }
-  },
+  }
 }
 </script>
 

@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
+import MainDashboard from '@/views/Dashboard.vue'
 
 const routes = [
-  // { path: '/', name: 'home', component: HomeView },
-  // { path: '/about', name: 'about', component: () => import('../views/AboutView.vue')}
+  { path: '/', name: 'main', component: MainDashboard },
+  { path: '/chart', name: 'chart', component: () => import('@/views/ChartDetail.vue')}
 ]
 
 const router = createRouter({
