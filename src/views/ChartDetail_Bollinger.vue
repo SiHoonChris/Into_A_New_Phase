@@ -88,8 +88,8 @@ export default {
             .enter()
             .append("rect")
             .attr("class", "area")
-            .attr("x", xScale.bandwidth() * 59.4)   // 지점 2  [지점 xScale 활용해서 딱 못짚나???]
-            .attr("width", xScale.bandwidth() * 20) // 지점1-지점2  [지점 xScale 활용해서 딱 못짚나???]
+            .attr("x", xScale("20170102"))   // 지점 2  [지점 xScale 활용해서 딱 못짚나???]
+            .attr("width", xScale("20170129") - xScale("20170102")) // 지점1-지점2  [지점 xScale 활용해서 딱 못짚나???]
             .attr("y", 0)
             .attr("height", height)
             .attr("fill", "yellow")

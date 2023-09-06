@@ -8,8 +8,8 @@
       </select>
     </div>
     <div id="charts">
-      <CoverChart :name="Assets[0]" :state="States[0]"/>
-      <CoverChart :name="Assets[1]" :state="States[2]"/>
+      <CoverChart :name="Assets[0]" :state="States[0]" :link="Charts[0]" />
+      <CoverChart :name="Assets[1]" :state="States[2]" :link="Charts[1]" />
       <CoverChart :name="Assets[2]" :state="States[1]"/>
       <CoverChart :name="Assets[3]" :state="States[0]"/>
       <CoverChart :name="Assets[4]" :state="States[1]"/>
@@ -26,7 +26,8 @@ export default {
   data() {
     return {
       Assets: ["Apple.Inc", "Samsung Electric", "Microsoft", "JEPI", "Google" , "QYLD"],
-      States: ["BULL", "BEAR", "UNDECIDED"]
+      States: ["BULL", "BEAR", "UNDECIDED"],
+      Charts: ["/chartB", "/chartI"]
     }
   }
 }
