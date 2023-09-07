@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ohlc_total_Data from '@/assets/data.json'
+import ohlc_data from '@/assets/data.json'
 
 export default {
   mounted(){
@@ -15,7 +15,7 @@ export default {
     // N = (범위) , M = (표준편차 계수)
     const N = 20, M = 2;
     // Typical Price
-    const BB_BAND_TP = JSON.parse(`[${ohlc_total_Data.map((e) => `{"date" : ${e.date}, "TP" : ${(e.high+e.low+e.close)/3}}`).join()}]`); 
+    const BB_BAND_TP = JSON.parse(`[${ohlc_data.map((e) => `{"date" : ${e.date}, "TP" : ${(e.high+e.low+e.close)/3}}`).join()}]`); 
     // Population Standart Deviation
     const BB_BAND_PSTDEV =
         BB_BAND_TP.map((e, i) => {
@@ -68,8 +68,8 @@ export default {
         let g = svg.append("g")
                 .attr("transform", "translate(" + 15 + "," + 5 + ")");
             
-        xScale.domain(ohlc_total_Data.map((d) => d.date));
-        yScale.domain(d3.extent([d3.max(ohlc_total_Data, (d) => d.high), d3.min(ohlc_total_Data, (d) => d.low)]));
+        xScale.domain(ohlc_data.map((d) => d.date));
+        yScale.domain(d3.extent([d3.max(ohlc_data, (d) => d.high), d3.min(ohlc_data, (d) => d.low)]));
         
         /* x축 생성 */
         g.append("g")
@@ -84,7 +84,7 @@ export default {
 
         /* 상승/하락 구간 표시 */
         g.selectAll(".area")
-            .data(ohlc_total_Data)
+            .data(ohlc_data)
             .enter()
             .append("rect")
             .attr("class", "area")
@@ -110,7 +110,7 @@ export default {
         g.append("path")
             .datum(BB_BAND.slice(N-1, BB_BAND.length))
             .attr("fill", "none")
-            .attr("stroke", "#000099")
+            .attr("stroke", "#0000ff")
             .attr("stroke-width", 1.0)
             .attr("d", d3.line()
             .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
@@ -121,7 +121,7 @@ export default {
         g.append("path")
             .datum(BB_BAND.slice(N-1, BB_BAND.length))
             .attr("fill", "none")
-            .attr("stroke", "#000099")
+            .attr("stroke", "#0000ff")
             .attr("stroke-width", 1.0)
             .attr("d", d3.line()
             .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
@@ -130,7 +130,7 @@ export default {
 
         /* 캔들 몸통 */
         g.selectAll(".candle")
-            .data(ohlc_total_Data)
+            .data(ohlc_data)
             .enter()
             .append("rect")
             .attr("class", "candle")
@@ -142,7 +142,7 @@ export default {
         
         /* 캔들 꼬리 */
         g.selectAll(".tail")
-            .data(ohlc_total_Data)
+            .data(ohlc_data)
             .enter()
             .append("line")
             .attr("class", "tail")

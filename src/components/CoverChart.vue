@@ -4,24 +4,24 @@
       <span>{{name}}</span>
       <span>{{state}}</span>
     </div>
-    <div class="candles" @click="moveToChartDetail(this.link)">
+    <div class="candles" @click="moveToChartDetail()">
       <svg id="chart" width="460.800" height="292.487"></svg>
     </div>
   </section>
 </template>
 
 <script>
-import ohlc_Data from '@/assets/apple.json'
+import ohlc_data from '@/assets/data.json'
 
 export default {
   props: ['name', 'state', 'link'],
   methods:{
-    moveToChartDetail: function(link){
-      this.$router.push(link);
+    moveToChartDetail: function(){
+      this.$router.push("/chart");
     }
   },
   mounted(){
-    let ohlcData = ohlc_Data;
+    let ohlcData = ohlc_data.slice(ohlc_data.length-40, ohlc_data.length);
         
     // var barsWidth  = window.getComputedStyle(document.querySelector(".candles")).width.replace('px', ''),
     //     barsHeight = window.getComputedStyle(document.querySelector(".candles")).height.replace('px', ''),

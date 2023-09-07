@@ -1,7 +1,7 @@
 <template>
   <main>
     <section id="d3">
-      <svg width="1530" height="700"></svg>
+      <svg width="1534" height="619"></svg>
     </section>
   </main>
 </template>
@@ -90,7 +90,7 @@ export default {
             yScale = d3.scaleLinear().range([height, 0]);
                 
         let g = svg.append("g")
-                .attr("transform", "translate(" + 15 + "," + 5 + ")");
+                .attr("transform", "translate(" + 0 + "," + 0 + ")");
             
         xScale.domain(ohlc_data.map((d) => d.date));
         yScale.domain(d3.extent([d3.max(ohlc_data, (d) => d.high), d3.min(ohlc_data, (d) => d.low)]));

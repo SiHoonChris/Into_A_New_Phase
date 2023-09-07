@@ -1,6 +1,7 @@
 <template>
   <main>
     <div id="setting">
+      <input id="search" type="text" value="Search" @click="readyToSearch"/>
       <select>
         <option value="all">All</option>
         <option value="hold">Holding</option>
@@ -8,8 +9,8 @@
       </select>
     </div>
     <div id="charts">
-      <CoverChart :name="Assets[0]" :state="States[0]" :link="Charts[0]" />
-      <CoverChart :name="Assets[1]" :state="States[2]" :link="Charts[1]" />
+      <CoverChart :name="Assets[0]" :state="States[0]"/>
+      <CoverChart :name="Assets[1]" :state="States[2]"/>
       <CoverChart :name="Assets[2]" :state="States[1]"/>
       <CoverChart :name="Assets[3]" :state="States[0]"/>
       <CoverChart :name="Assets[4]" :state="States[1]"/>
@@ -25,9 +26,13 @@ export default {
   components: { CoverChart },
   data() {
     return {
-      Assets: ["Apple.Inc", "Samsung Electric", "Microsoft", "JEPI", "Google" , "QYLD"],
-      States: ["BULL", "BEAR", "UNDECIDED"],
-      Charts: ["/chartB", "/chartI"]
+      Assets: ["Dummy Datas", "Apple.Inc", "Samsung Electric", "Microsoft", "JEPI", "Google"],
+      States: ["BULL", "BEAR", "UNDECIDED"]
+    }
+  },
+  methods: {
+    readyToSearch: function() {
+      document.getElementById("search").value = "";
     }
   }
 }
@@ -48,8 +53,15 @@ main {
     height: 14.9%;
     width: 100%;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
+}
+#search {
+  height: 3vh;
+  border: 1px solid white;
+  background: #0a0a0a;
+  color: white;
+  font-weight: bold;
 }
 select {
     background: #1a1a1a;

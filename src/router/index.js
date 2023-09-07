@@ -3,8 +3,7 @@ import MainDashboard from '@/views/Dashboard.vue'
 
 const routes = [
   { path: '/', name: 'main', component: MainDashboard },
-  { path: '/chartB', name: 'Bollinger', component: () => import('@/views/ChartDetail_Bollinger.vue') },
-  { path: '/chartI', name: 'Ichimoku', component: () => import('@/views/ChartDetail_Ichimoku.vue') }
+  { path: '/chart', name: 'chart', component: () => import('@/views/AssetChart.vue') }
 ]
 
 const router = createRouter({
