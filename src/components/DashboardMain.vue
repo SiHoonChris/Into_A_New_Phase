@@ -1,11 +1,11 @@
 <template>
   <main>
     <div id="setting">
-      <input id="search" type="text" value="Search" @click="readyToSearch"/>
+      <input id="search" type="text" value="Search" @focus="readyToSearch" @blur="setDefault"/>
       <select>
         <option value="all">All</option>
-        <option value="hold">Holding</option>
-        <option value="unheld">Not Holding</option>
+        <option value="hold">Hold</option>
+        <option value="unheld">Not Hold</option>
       </select>
     </div>
     <div id="charts">
@@ -26,13 +26,18 @@ export default {
   components: { CoverChart },
   data() {
     return {
-      Assets: ["Dummy Datas", "Apple.Inc", "Samsung Electric", "Microsoft", "JEPI", "Google"],
-      States: ["BULL", "BEAR", "UNDECIDED"]
+      Assets: ["Dummy", "AAPL", "Samsung Electric", "MSFT", "JEPI", "GOOGL"],
+      States: ["BULL", "BEAR", "UNDECIDED"],
     }
   },
   methods: {
     readyToSearch: function() {
       document.getElementById("search").value = "";
+    },
+    setDefault: function() {
+      if(document.getElementById("search").value === "") {
+        document.getElementById("search").value = "Search";
+      }
     }
   }
 }
@@ -47,6 +52,20 @@ main {
     justify-content: space-between;
     padding: 0 2vw;
     overflow-y: scroll;
+}
+main::-webkit-scrollbar-track {
+	background-color: black;
+}
+
+main::-webkit-scrollbar {
+	background-color: black;
+	width: 10px;
+}
+
+main::-webkit-scrollbar-thumb {
+	border-radius: 30px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #333;
 }
 #setting {
     margin: 0;
@@ -78,4 +97,5 @@ select {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 </style>

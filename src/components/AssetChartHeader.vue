@@ -1,14 +1,22 @@
 <template>
   <header>
-    <span id="name">Dummy Datas</span>
+    <span id="name">Dummy</span>
     <div id="tools">
-      <ul>
-        <li>Bollinger Band</li>
-        <li>Ichimoku Kinko Hyo</li>
-      </ul>
+        <input type="checkbox" id="BB"/>Bollinger Band
+        <input type="checkbox" id="IC"/>Ichimoku Kinko Hyo
     </div>
   </header>
 </template>
+
+<script>
+export default {
+  computed: {
+    alert() {
+      if(document.getElementById("BB").checked) alert("checked");
+    }
+  },
+}
+</script>
 
 <style scoped>
 header {
