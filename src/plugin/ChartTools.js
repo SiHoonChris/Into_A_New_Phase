@@ -11,7 +11,7 @@ export default {
                     yScale = d3.scaleLinear().range([height, 0]);
                         
                 let g = svg.append("g")
-                        .attr("transform", "translate(" + 15 + "," + 5 + ")");
+                        .attr("transform", "translate(" + 0 + "," + 0 + ")");
                     
                 xScale.domain(ohlc_data.map((d) => d.date));
                 yScale.domain(d3.extent([d3.max(ohlc_data, (d) => d.high), d3.min(ohlc_data, (d) => d.low)]));
@@ -25,6 +25,7 @@ export default {
                 /* y축 생성 */
                 g.append("g")
                     .attr("color", "white")
+                    .attr("transform", "translate(" + width + ", 0)")
                     .call(d3.axisLeft(yScale));
                 
                 /* 캔들 몸통 */

@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="setting">
-      <input id="search" type="text" value="Search" @focus="readyToSearch" @blur="setDefault"/>
+      <input id="search" type="text" placeholder="Search"/>
       <select>
         <option value="all">All</option>
         <option value="hold">Hold</option>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import CoverChart from "@/components/CoverChart.vue"
+import CoverChart from "@/components/DashboardCoverChart.vue"
 
 export default {
   components: { CoverChart },
@@ -30,23 +30,14 @@ export default {
       States: ["BULL", "BEAR", "UNDECIDED"],
     }
   },
-  methods: {
-    readyToSearch: function() {
-      document.getElementById("search").value = "";
-    },
-    setDefault: function() {
-      if(document.getElementById("search").value === "") {
-        document.getElementById("search").value = "Search";
-      }
-    }
-  }
+  methods: {}
 }
 </script>
 
 <style scoped>
 main {
     margin: 0;
-    height: 70vh;
+    height: 80vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -81,6 +72,9 @@ main::-webkit-scrollbar-thumb {
   background: #0a0a0a;
   color: white;
   font-weight: bold;
+}
+::placeholder {
+    color: white;
 }
 select {
     background: #1a1a1a;

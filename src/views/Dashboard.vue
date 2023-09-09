@@ -1,15 +1,11 @@
 <template>
-  <div>
-    <HeaderComponent/>
-    <MainComponent/>
-  </div>
+  <MainComponent/>
 </template>
 
 <script>
-import HeaderComponent from "@/components/DashboardHeader.vue"
 import MainComponent from "@/components/DashboardMain.vue"
 
 export default {
-  components: { HeaderComponent, MainComponent },
+  components: { MainComponent },
 }
 </script>

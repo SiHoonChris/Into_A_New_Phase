@@ -2,6 +2,7 @@
   <header>
     <div id="nav">
       <nav id="navigation">
+        <span @click="moveToMain">Main</span>
         <span>Portfolio</span>
         <span>Balance Sheet</span>
         <span>Income Stat.</span>
@@ -41,10 +42,15 @@
 </template>
 
 <script>
-import IndexCarousel from "@/components/IndexCarousel.vue"
+import IndexCarousel from "@/components/DashboardIndexCarousel.vue"
 
 export default {
   components: { IndexCarousel },
+  methods: {
+    moveToMain() {
+      this.$router.push("/");
+    }
+  }
 }
 </script>
 
@@ -52,7 +58,7 @@ export default {
 header {
     margin: 0;
     padding: 0 2vw;
-    height: 29.9vh;
+    height: 19.9vh;
     border-bottom: 1px solid gray;
     background: #0a0a0a;
     display: flex;
@@ -69,14 +75,16 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 10vh;
+    height: 8vh;
+}
+nav:first-child {
+    padding: 0 2vw !important;
 }
 #navigation {
     padding: 0 1vw;
     border-bottom: 1px solid gray;
 }
 #navigation span {
-    width: 10vw;
     text-align: center;
     color: silver;
     font-weight: bold;
@@ -89,13 +97,13 @@ nav {
 }
 #table {
     width: 38vw;
-    height: 20vh;
+    height: 16vh;
     overflow: hidden;
     border: 1px solid grey;
 }
 table {
     width: 38vw;
-    height: 20vh;
+    height: 16vh;
     border-collapse: collapse;
     color: white;
 }

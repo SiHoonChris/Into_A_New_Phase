@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
-import App from './FirstDashboard.vue'
+import App from './App.vue'
 import router from './router'
 import store from './store'
 import ChartTools from './plugin/ChartTools.js'
 
-createApp(App)
-  .use(store)
-  .use(router)
-  .use(ChartTools)
-  .mount('#app');
+const app = createApp(App);
+app.use(store)
+app.use(router);
+app.use(ChartTools)
+app.mount('#app');
