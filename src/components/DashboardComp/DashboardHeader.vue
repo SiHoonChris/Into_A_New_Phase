@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import IndexCarousel from "@/components/DashboardIndexCarousel.vue"
+import IndexCarousel from "@/components/DashboardComp/DashboardIndexCarousel.vue"
 
 export default {
   components: { IndexCarousel },

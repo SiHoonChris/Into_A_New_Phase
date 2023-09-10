@@ -52,7 +52,7 @@ export default {
                     .attr("y2", (d) => yScale(d.high))
                     .style("stroke", (d) => d.open >= d.close ? "red" : "green");
             
-            } // function createBollinger()
+            } // function : $create_Candle
 
         Vue.config.globalProperties.$create_Bollinger = 
             function(ohlc_data) {
@@ -116,6 +116,7 @@ export default {
                 /* 볼린저밴드 - 중앙선 */
                 g.append("path")
                     .datum(BB_BAND.slice(N-1, BB_BAND.length))
+                    .attr("class", "bollinger-part")
                     .attr("fill", "none")
                     .attr("stroke", "#ff0066")
                     .attr("stroke-width", 1.0)
@@ -127,6 +128,7 @@ export default {
                 /* 볼린저밴드 - 상단선 */
                 g.append("path")
                     .datum(BB_BAND.slice(N-1, BB_BAND.length))
+                    .attr("class", "bollinger-part")
                     .attr("fill", "none")
                     .attr("stroke", "#0000ff")
                     .attr("stroke-width", 1.0)
@@ -138,6 +140,7 @@ export default {
                 /* 볼린저밴드 - 하단선 */
                 g.append("path")
                     .datum(BB_BAND.slice(N-1, BB_BAND.length))
+                    .attr("class", "bollinger-part")
                     .attr("fill", "none")
                     .attr("stroke", "#0000ff")
                     .attr("stroke-width", 1.0)
@@ -146,7 +149,7 @@ export default {
                     .y((d) => yScale(d.LD))
                 );
             
-            } // function createBollinger()
+            } // function : $create_Bollinger
 
         Vue.config.globalProperties.$create_Ichimoku = 
             function(ohlc_data) {
@@ -232,6 +235,7 @@ export default {
                 /* 일목균형표 전환선 */
                 g.append("path")
                     .datum(ICHIMOKU_TENKAN_SEN.slice(8, ICHIMOKU_TENKAN_SEN.length))
+                    .attr("class", "ichimoku-part")
                     .attr("fill", "none")
                     .attr("stroke", "#ff00ff")
                     .attr("stroke-width", 0.8)
@@ -243,6 +247,7 @@ export default {
                 /* 일목균형표 기준선 */
                 g.append("path")
                     .datum(ICHIMOKU_KIJUN_SEN.slice(25, ICHIMOKU_KIJUN_SEN.length))
+                    .attr("class", "ichimoku-part")
                     .attr("fill", "none")
                     .attr("stroke", "#0066ff")
                     .attr("stroke-width", 0.8)
@@ -254,6 +259,7 @@ export default {
                 /* 일목균형표 선행스팬 A */
                 g.append("path")
                     .datum(ICHIMOKU_SENKOU_SPAN.slice(25, ICHIMOKU_SENKOU_SPAN.length))
+                    .attr("class", "ichimoku-part")
                     .attr("fill", "none")
                     .attr("stroke", "#3af030")
                     .attr("stroke-width", 1.6)
@@ -265,6 +271,7 @@ export default {
                 /* 일목균형표 선행스팬 B */
                 g.append("path")
                     .datum(ICHIMOKU_SENKOU_SPAN.slice(51, ICHIMOKU_SENKOU_SPAN.length))
+                    .attr("class", "ichimoku-part")
                     .attr("fill", "none")
                     .attr("stroke", "orange")
                     .attr("stroke-width", 1.6)
@@ -276,6 +283,7 @@ export default {
                 /* 일목균형표 후행스팬 */
                 g.append("path")
                     .datum(ICHIMOKU_CHIKOU_SPAN.slice(25, ICHIMOKU_CHIKOU_SPAN.length))
+                    .attr("class", "ichimoku-part")
                     .attr("fill", "none")
                     .attr("stroke", "grey")
                     .attr("stroke-width", 0.6)
@@ -287,6 +295,7 @@ export default {
                 /* 일목균형표 구름대 */
                 g.append("path")
                     .datum(ICHIMOKU_SENKOU_SPAN.slice(51, ICHIMOKU_SENKOU_SPAN.length))
+                    .attr("class", "ichimoku-part")
                     .attr("fill", "#3af030")
                     .style("opacity", 0.18)
                     .attr("d", d3.area()
@@ -304,6 +313,6 @@ export default {
                 //   .y1((d) => yScale(d.Senkou_B))
                 //  );
             
-            } // function createIchimoku()
+            } // function : $create_Ichimoku
     }
 }

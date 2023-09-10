@@ -61,42 +61,69 @@
 <style scoped>
 #onwatch-table {
     width: 100%;
-    height: 100%;
-    overflow: auto;
 }
 table {
     width: 100%;
+    height: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     color: white;
 }
-thead tr th {
-  position: sticky;
-  background: black;
-  top: 0;
+
+/* Table-Head */
+thead {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid grey;
 }
-th, td {
-    border: 1px solid grey;
+thead tr th:nth-child(1) {
+    width: 25vw; /* 70% */
+    height: 4.4vh;
+    text-align: center;
+    border-left: 1px solid grey;
 }
-tr td:nth-child(1) {
-    width: 60%;
+thead tr th:nth-child(2) {
+    width: 15vw; /* 30% */ 
+    height: 4.4vh;
+    text-align: center;
+    border-left: 1px solid grey;
+}
+
+/* Table-Body */
+tbody {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    height: 43.1vh;
+}
+tbody tr td:nth-child(1) {
+    width: 28vw; /* 70% */
+    padding-left: 6px;
     text-align: left;
-    padding-left: 8px;
 }
-tr td:nth-child(2) {
-    width: 40%;
+tbody tr td:nth-child(2) {
+    width: 12vw; /* 30% */ 
     text-align: center;
 }
-#onwatch-table::-webkit-scrollbar-track {
-	background-color: black;
+td {
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
 }
-#onwatch-table::-webkit-scrollbar {
-	background-color: black;
-	width: 10px;
+
+/* Scroll-bar */
+tbody::-webkit-scrollbar-track {
+  	background-color: black;
+    border-bottom: 1px solid gray;
 }
-#onwatch-table::-webkit-scrollbar-thumb {
-	border-radius: 30px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #333;
+tbody::-webkit-scrollbar {
+  	background-color: black;
+  	width: 0.6vw;
+}
+tbody::-webkit-scrollbar-thumb {
+  	border-radius: 30px;
+  	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  	background-color: #333;
 }
 
 </style>

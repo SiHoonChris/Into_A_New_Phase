@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import HeaderComponent from "@/components/DashboardHeader.vue"
+import HeaderComponent from "@/components/DashboardComp/DashboardHeader.vue"
 
 export default {
   components: { HeaderComponent }

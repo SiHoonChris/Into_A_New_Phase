@@ -1,0 +1,158 @@
+<template>
+  <main>
+    <div id="info-n-setting">
+      <div id="name">Dummy</div>
+      <div id="info">
+        <p>
+          <span>Market Cap  1.72T</span>
+          <span>Debt/Equity  32.35%</span>
+          <span>Div. Yield  0.00%</span>
+        </p>
+        <p>
+          <span>Highest(Overall)  145.2382</span>
+          <span>Lowest(Overall)  89.4234</span>
+        </p>
+      </div>
+      <div id="chart-tool">
+        <span id="dropdown_off" @click="activateDropdown">Tool</span>
+      </div>
+    </div>
+    <section id="d3">
+      <svg width="920" height="360"></svg>
+      <ul>
+        <li><input type="checkbox" id="input_bollinger" @click="createBollinger"/>Bollinger Band</li>
+        <li><input type="checkbox" id="input_ichimoku" @click="createIchimoku"/>Ichimoku Kinko</li>
+        <li><input type="checkbox" disabled/>Customed Tool-1</li>
+      </ul>
+    </section>
+  </main>
+</template>
+
+<script>
+import ohlc_data from '@/assets/data.json'
+
+export default {
+  data() {
+    return {
+      dropdownActivated: 'off'
+    }
+  },
+  mounted(){
+    this.$create_Candle(ohlc_data);
+  },
+  methods: {
+    activateDropdown() {
+      if(this.dropdownActivated === 'off') {
+        this.dropdownActivated = 'on';
+        document.getElementById('dropdown_off').id = 'dropdown_on';
+        document.querySelector('#d3 ul').style.display = 'block';
+      } else {
+        this.dropdownActivated = 'off';
+        document.getElementById('dropdown_on').id = 'dropdown_off';
+        document.querySelector('#d3 ul').style.display = 'none';
+      }
+    },
+    createBollinger() {
+      if(document.querySelector("#input_bollinger").checked) this.$create_Bollinger(ohlc_data)
+      else this.$remove_chart(".bollinger-part")
+    },
+    createIchimoku() {
+      if(document.querySelector("#input_ichimoku").checked) this.$create_Ichimoku(ohlc_data)
+      else this.$remove_chart(".ichimoku-part")
+    },
+  }
+}
+</script>
+
+<style scoped>
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* Chart 상단 */
+#info-n-setting {
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    border-bottom: 0.5px solid gray;
+    padding-left: 1vw;
+}
+/* Chart 상단 - 종목명 */
+#info-n-setting #name {
+    color: white;
+    width: 30%;
+    align-items: baseline;
+    font-size: 30px;
+    font-weight: bold;
+}
+/* Chart 상단 - 종목 정보 */
+#info-n-setting #info {
+    width: 55%;
+    color: white;
+}
+#info-n-setting #info span {
+    color: white;
+}
+#info p {
+    margin: 0;
+}
+#info p span {
+    margin-right: 2vw;
+}
+/* Chart 상단 - 보조지표 선택 */
+#info-n-setting #chart-tool {
+    width: 15%;
+    height: 50%;
+    padding: 0;
+    text-align: right;
+    margin-top: 24px;
+    color: white;
+}
+#chart-tool span {
+    margin-right: 10px;
+}
+#chart-tool span:hover {
+    cursor: pointer;
+}
+#chart-tool #dropdown_off::after {
+    content: "▼";
+    margin-right: 8px;
+    float: right;
+}
+#chart-tool #dropdown_on::after {
+    content: "▲";
+    margin-right: 8px;
+    float: right;
+}
+
+/* Chart 하단(메인) */
+section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#d3 svg {
+    border: 1px solid grey;
+}
+#d3 ul {
+    display: none;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    background: black;
+    color: white;
+}
+#d3 ul li {
+    width: 100%;
+    border: 1px solid gray;
+    list-style-type: none;
+    text-align: left;
+}
+</style>

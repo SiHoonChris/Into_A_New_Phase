@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import MainComponent from "@/components/DashboardMain.vue"
+import MainComponent from "@/components/DashboardComp/DashboardMain.vue"
 
 export default {
   components: { MainComponent },

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import CoverChart from "@/components/DashboardCoverChart.vue"
+import CoverChart from "@/components/DashboardComp/DashboardCoverChart.vue"
 
 export default {
   components: { CoverChart },

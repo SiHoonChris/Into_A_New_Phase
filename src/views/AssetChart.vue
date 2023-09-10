@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import AssetChartMain from "@/components/AssetChartMain.vue"
-import AssetChartFiles from "@/components/AssetChartFiles.vue"
-import AssetChartRecord from "@/components/AssetChartRecord.vue"
-import AssetChartOnWatch from "@/components/AssetChartOnWatch.vue"
-import AssetChartMemo from "@/components/AssetChartMemo.vue"
+import AssetChartMain from "@/components/AssetChartComp/AssetChartMain.vue"
+import AssetChartFiles from "@/components/AssetChartComp/AssetChartFiles.vue"
+import AssetChartRecord from "@/components/AssetChartComp/AssetChartRecord.vue"
+import AssetChartOnWatch from "@/components/AssetChartComp/AssetChartOnWatch.vue"
+import AssetChartMemo from "@/components/AssetChartComp/AssetChartMemo.vue"
 
 export default {
   components: { AssetChartMain, AssetChartFiles, AssetChartRecord, AssetChartOnWatch, AssetChartMemo },
