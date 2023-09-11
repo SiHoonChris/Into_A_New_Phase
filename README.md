@@ -7,4 +7,5 @@ mer·cen·ary
 ## Stack
 <b>Front</b> : Vue.js  
 <b>Back</b> : Express.js  
-<b>DB</b> : MySQL (추후 MongoDB)  
+<b>DB1</b> : MySQL (for basic info.)  
+<b>DB2</b> : MongoDB (for chart)  

@@ -20,9 +20,9 @@
     <section id="d3">
       <svg width="920" height="360"></svg>
       <ul>
-        <li><input type="checkbox" id="input_bollinger" @click="createBollinger"/>Bollinger Band</li>
-        <li><input type="checkbox" id="input_ichimoku" @click="createIchimoku"/>Ichimoku Kinko</li>
-        <li><input type="checkbox" disabled/>Customed Tool-1</li>
+        <li><input type="checkbox" id="check_bollinger" @click="createBollinger"/>Bollinger Band</li>
+        <li><input type="checkbox" id="check_ichimoku" @click="createIchimoku"/>Ichimoku Kinko</li>
+        <li><input type="checkbox" id="check_customed_tool_1" @click="createCustomed_1"/>Customed_Tool_1</li>
       </ul>
     </section>
   </main>
@@ -53,12 +53,16 @@ export default {
       }
     },
     createBollinger() {
-      if(document.querySelector("#input_bollinger").checked) this.$create_Bollinger(ohlc_data)
-      else this.$remove_chart(".bollinger-part")
+      document.querySelector("#check_bollinger").checked ?
+      this.$create_Bollinger(ohlc_data) : this.$remove_chart(".bollinger-part")
     },
     createIchimoku() {
-      if(document.querySelector("#input_ichimoku").checked) this.$create_Ichimoku(ohlc_data)
-      else this.$remove_chart(".ichimoku-part")
+      document.querySelector("#check_ichimoku").checked ?
+      this.$create_Ichimoku(ohlc_data) : this.$remove_chart(".ichimoku-part")
+    },
+    createCustomed_1() {
+      document.querySelector("#check_customed_tool_1").checked ?
+      this.$create_Customed_Tool_1(ohlc_data) : this.$remove_chart(".customed_tool_1-part")
     },
   }
 }
