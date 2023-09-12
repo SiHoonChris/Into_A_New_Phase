@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="info-n-setting">
-      <div id="name">Dummy</div>
+      <div id="name">{{this.BasicInfo[this.idx].Assets}}</div>
       <div id="info">
         <p>
           <span>Market Cap  1.72T</span>
@@ -29,25 +29,34 @@
 </template>
 
 <script>
+import basic_info from "@/assets/basic_info.json"
 import ohlc_data from '@/assets/data.json'
 
 export default {
   data() {
     return {
-      dropdownActivated: 'off'
+      dropdownActivated: false,
+      BasicInfo: basic_info,
+      idx: 0
     }
+  },
+  created(){
+    let code = this.$route.params.code;
+    this.idx = this.BasicInfo.findIndex(function(item, i){
+      return item.Codes === code;
+    });
   },
   mounted(){
     this.$create_Candle(ohlc_data);
   },
   methods: {
     activateDropdown() {
-      if(this.dropdownActivated === 'off') {
-        this.dropdownActivated = 'on';
+      if(!this.dropdownActivated) {
+        this.dropdownActivated = true;
         document.getElementById('dropdown_off').id = 'dropdown_on';
         document.querySelector('#d3 ul').style.display = 'block';
       } else {
-        this.dropdownActivated = 'off';
+        this.dropdownActivated = false;
         document.getElementById('dropdown_on').id = 'dropdown_off';
         document.querySelector('#d3 ul').style.display = 'none';
       }

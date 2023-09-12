@@ -14,10 +14,10 @@
 import ohlc_data from '@/assets/data.json'
 
 export default {
-  props: ['name', 'state', 'link'],
+  props: ['name', 'state', 'code'],
   methods:{
     moveToChartDetail: function(){
-      this.$router.push("/chart");
+      this.$router.push({name: 'chart', params: {code: this.code}});
     }
   },
   mounted(){

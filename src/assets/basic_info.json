@@ -1,0 +1,8 @@
+[
+    {"Assets": "Dummy",            "Codes": "DUM",    "States": "BULL"     },
+    {"Assets": "Apple",            "Codes": "AAPL",   "States": "UNDECIDED"},
+    {"Assets": "Samsung Electric", "Codes": "005930", "States": "BEAR"     },
+    {"Assets": "Microsoft",        "Codes": "MSFT",   "States": "BULL"     },
+    {"Assets": "JEPI",             "Codes": "JEPI",   "States": "UNDECIDED"},
+    {"Assets": "Alphabet",         "Codes": "GOOGL",  "States": "BEAR"     }
+]
