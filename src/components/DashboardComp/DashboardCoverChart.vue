@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ohlc_data from '@/assets/data.json'
+import ohlc_data from '@/assets/GOOGL_data.json'
 
 export default {
   props: ['name', 'state', 'code'],

@@ -18,7 +18,7 @@
       </div>
     </div>
     <section id="d3">
-      <svg width="920" height="360"></svg>
+      <svg></svg>
       <ul>
         <li><input type="checkbox" id="check_bollinger" @click="createBollinger"/>Bollinger Band</li>
         <li><input type="checkbox" id="check_ichimoku" @click="createIchimoku"/>Ichimoku Kinko</li>
@@ -30,7 +30,7 @@
 
 <script>
 import basic_info from "@/assets/basic_info.json"
-import ohlc_data from '@/assets/data.json'
+import ohlc_data from '@/assets/GOOGL_data.json'
 
 export default {
   data() {
@@ -47,7 +47,7 @@ export default {
     });
   },
   mounted(){
-    this.$create_Candle(ohlc_data);
+    this.$create_Candle(920, 360, ohlc_data);
   },
   methods: {
     activateDropdown() {
@@ -148,9 +148,9 @@ section {
     justify-content: center;
     align-items: center;
 }
-#d3 svg {
+/* #d3 svg {
     border: 1px solid grey;
-}
+} */
 #d3 ul {
     display: none;
     position: absolute;

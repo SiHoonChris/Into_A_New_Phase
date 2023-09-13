@@ -2,7 +2,10 @@ export default {
     install(Vue) {
 
         Vue.config.globalProperties.$create_Candle =
-            function(ohlc_data) {            
+            function(w, h, ohlc_data) {      
+                document.querySelector("#d3 svg").setAttribute("width", w); //920
+                document.querySelector("#d3 svg").setAttribute("height", h); //360
+
                 let svg    = d3.select("#d3 svg"),
                     width  = svg.attr("width"),
                     height = svg.attr("height");
@@ -121,7 +124,7 @@ export default {
                     .attr("stroke", "#ff0066")
                     .attr("stroke-width", 1.0)
                     .attr("d", d3.line()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y((d) => yScale(d.MA))
                 );
                 
@@ -133,7 +136,7 @@ export default {
                     .attr("stroke", "#0000ff")
                     .attr("stroke-width", 1.0)
                     .attr("d", d3.line()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y((d) => yScale(d.LU))
                 );
             
@@ -145,7 +148,7 @@ export default {
                     .attr("stroke", "#0000ff")
                     .attr("stroke-width", 1.0)
                     .attr("d", d3.line()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y((d) => yScale(d.LD))
                 );
             
@@ -240,7 +243,7 @@ export default {
                     .attr("stroke", "#ff00ff")
                     .attr("stroke-width", 0.8)
                     .attr("d", d3.line()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y((d) => yScale(d.Tenkan))
                 );
             
@@ -252,7 +255,7 @@ export default {
                     .attr("stroke", "#0066ff")
                     .attr("stroke-width", 0.8)
                     .attr("d", d3.line()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y((d) => yScale(d.Kijun))
                 );
             
@@ -264,7 +267,7 @@ export default {
                     .attr("stroke", "#3af030")
                     .attr("stroke-width", 1.6)
                     .attr("d", d3.line()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y((d) => yScale(d.Senkou_A))
                     );
             
@@ -276,7 +279,7 @@ export default {
                     .attr("stroke", "orange")
                     .attr("stroke-width", 1.6)
                     .attr("d", d3.line()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y((d) => yScale(d.Senkou_B))
                 );
             
@@ -288,7 +291,7 @@ export default {
                     .attr("stroke", "grey")
                     .attr("stroke-width", 0.6)
                     .attr("d", d3.line()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y((d) => yScale(d.Chikou))
                 );
             
@@ -299,7 +302,7 @@ export default {
                     .attr("fill", "#3af030")
                     .style("opacity", 0.18)
                     .attr("d", d3.area()
-                    .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                     .y0((d) => yScale(d.Senkou_B))
                     .y1((d) => yScale(d.Senkou_A))
                     );
@@ -436,7 +439,7 @@ export default {
                         .attr("stroke", "#0000ff")
                         .attr("stroke-width", 1.0)
                         .attr("d", d3.line()
-                        .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                        .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                         .y((d) => yScale(d.LU))
                     );
             
@@ -448,7 +451,7 @@ export default {
                         .attr("stroke", "#0000ff")
                         .attr("stroke-width", 1.0)
                         .attr("d", d3.line()
-                        .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                        .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                         .y((d) => yScale(d.LD))
                     );
 
@@ -460,7 +463,7 @@ export default {
                         .attr("stroke", "#3af030")
                         .attr("stroke-width", 1.6)
                         .attr("d", d3.line()
-                        .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                        .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                         .y((d) => yScale(d.Senkou_A))
                         );
             
@@ -472,7 +475,7 @@ export default {
                         .attr("stroke", "orange")
                         .attr("stroke-width", 1.6)
                         .attr("d", d3.line()
-                        .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
+                        .x((d) => xScale(d.date)+xScale.bandwidth()/2)
                         .y((d) => yScale(d.Senkou_B))
                     );
                         
