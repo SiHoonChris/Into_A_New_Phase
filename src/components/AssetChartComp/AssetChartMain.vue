@@ -1,7 +1,9 @@
 <template>
   <main>
     <div id="info-n-setting">
-      <div id="name">{{this.BasicInfo[this.idx].Assets}}</div>
+      <div id="name-container">
+        <div id="name-contents">{{this.BasicInfo[this.idx].Assets}}</div>
+      </div>
       <div id="info">
         <p>
           <span>Market Cap  1.72T</span>
@@ -48,8 +50,32 @@ export default {
   },
   mounted(){
     this.$create_Candle(920, 360, ohlc_data);
+    this.displayFullName();
   },
   methods: {
+    displayFullName() {
+      const out_div = document.querySelector("#name-container"),  
+            in_div  = document.querySelector("#name-contents");
+      const len_out = Number(window.getComputedStyle(out_div).width.replace('px', '')), 
+            len_in  = Number(window.getComputedStyle(in_div).width.replace('px', ''));
+      
+      const moveToLeft = function() {
+        if(len_out < len_in) {
+          setTimeout(() => {
+            in_div.style.transform = "translate(" + (len_out-len_in) + "px, 0)";
+            in_div.style.transition = String(len_in/100)+"s linear";
+          }, 400)
+        }
+      }
+
+      document.querySelector("#name-contents").addEventListener('mouseenter', moveToLeft);
+      document.querySelector("#name-contents").addEventListener('mouseleave', function(){
+      if(len_out < len_in) {
+          clearTimeout(moveToLeft);
+          in_div.removeAttribute('style')
+        }
+      });
+    },
     activateDropdown() {
       if(!this.dropdownActivated) {
         this.dropdownActivated = true;
@@ -94,13 +120,24 @@ main {
     padding-left: 1vw;
 }
 /* Chart 상단 - 종목명 */
-#info-n-setting #name {
+#info-n-setting #name-container {
     color: white;
     width: 30%;
+    /* height: ; */
+    align-items: baseline;
+    font-size: 30px;
+    font-weight: bold;
+    overflow: hidden;
+}
+#info-n-setting #name-contents {
+    color: white;
+    width: max-content;
+    height: 100%;
     align-items: baseline;
     font-size: 30px;
     font-weight: bold;
 }
+
 /* Chart 상단 - 종목 정보 */
 #info-n-setting #info {
     width: 55%;
@@ -117,7 +154,7 @@ main {
 }
 /* Chart 상단 - 보조지표 선택 */
 #info-n-setting #chart-tool {
-    width: 15%;
+    width: 10%;
     height: 50%;
     padding: 0;
     text-align: right;
