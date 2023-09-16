@@ -8,44 +8,20 @@
         <span>Income Stat.</span>
         <span>Transaction</span>
       </nav>
-      <IndexCarousel/>
+      <DashboardIndexCarousel/>
     </div>
-    <div id="table">
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Transaction</th>
-            <th>Detail</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>23.08.24</td><td>Dividend</td><td>DBS Group Holdings, 48.00 SGD</td>
-          </tr>
-          <tr>
-            <td>23.08.21</td><td>Dividend</td><td>ICBC, 329.23 HKD</td>
-          </tr>
-          <tr>
-            <td>23.08.07</td><td>Dividend</td><td>IEF, 19.57 USD</td>
-          </tr>
-          <tr>
-            <td>23.08.07</td><td>Sell/Buy</td><td>JEPI, Sell, 38 * 55.4750 USD</td>
-          </tr>
-          <tr>
-            <td>23.07.31</td><td>Sell/Buy</td><td>MSFT, Buy, 1 * 336.3000 USD </td>
-          </tr>
-        </tbody>
-      </table>
+    <div id="total-transaction">
+      <DashboardTotalTransaction/>
     </div>
   </header>
 </template>
 
 <script>
-import IndexCarousel from "@/components/DashboardComp/DashboardIndexCarousel.vue"
+import DashboardIndexCarousel from "@/components/DashboardComp/DashboardHeader/DashboardIndexCarousel.vue"
+import DashboardTotalTransaction from "@/components/DashboardComp/DashboardHeader/DashboardTotalTransaction.vue"
 
 export default {
-  components: { IndexCarousel },
+  components: { DashboardIndexCarousel, DashboardTotalTransaction },
   methods: {
     moveToMain() {
       this.$router.push("/");
@@ -95,22 +71,10 @@ nav:first-child {
     text-decoration: underline;
     cursor: pointer;
 }
-#table {
+#total-transaction {
     width: 38vw;
     height: 16vh;
-    overflow: hidden;
     border: 1px solid grey;
 }
-table {
-    width: 38vw;
-    height: 16vh;
-    border-collapse: collapse;
-    color: white;
-}
-th, td {
-    border: 1px solid grey;
-}
-td:nth-child(1), td:nth-child(2) {
-    text-align: center;
-}
+
 </style>

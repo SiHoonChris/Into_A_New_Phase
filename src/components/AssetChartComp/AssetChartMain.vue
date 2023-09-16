@@ -11,12 +11,13 @@
           <span>Div. Yield  0.00%</span>
         </p>
         <p>
-          <span>Highest(Overall)  145.2382</span>
-          <span>Lowest(Overall)  89.4234</span>
+          <span>52-Week High  145.2382</span>
+          <span>52-Week Low  89.4234</span>
         </p>
       </div>
-      <div id="chart-tool">
-        <span id="dropdown_off" @click="activateDropdown">Tool</span>
+      <div id="tools">
+        <div id="more-info" @click="moreInfoPopup">More</div>
+        <div id="dropdown_off" @click="activateDropdown">Tool&nbsp;&nbsp;&nbsp;</div>
       </div>
     </div>
     <section id="d3">
@@ -27,14 +28,17 @@
         <li><input type="checkbox" id="check_customed_tool_1" @click="createCustomed_1"/>Customed_Tool_1</li>
       </ul>
     </section>
+    <AssetChartPopup1/>
   </main>
 </template>
 
 <script>
 import basic_info from "@/assets/basic_info.json"
-import ohlc_data from '@/assets/GOOGL_data.json'
+import ohlc_data from "@/assets/GOOGL_data.json"
+import AssetChartPopup1 from "@/components/AssetChartComp/AssetChartMain/AssetChartPopup1.vue"
 
 export default {
+  components: { AssetChartPopup1 },
   data() {
     return {
       dropdownActivated: false,
@@ -75,7 +79,12 @@ export default {
           in_div.removeAttribute('style')
         }
       });
-    },
+    }, /* displayFullName() */
+
+    moreInfoPopup() {
+      document.querySelector('#Popup-1-container').style.display = 'block';
+    }, /* moreInfoPopup() */
+
     activateDropdown() {
       if(!this.dropdownActivated) {
         this.dropdownActivated = true;
@@ -86,19 +95,23 @@ export default {
         document.getElementById('dropdown_on').id = 'dropdown_off';
         document.querySelector('#d3 ul').style.display = 'none';
       }
-    },
+    }, /* activateDropdown() */
+
     createBollinger() {
       document.querySelector("#check_bollinger").checked ?
       this.$create_Bollinger(ohlc_data) : this.$remove_chart(".bollinger-part")
-    },
+    }, /* createBollinger() */
+
     createIchimoku() {
       document.querySelector("#check_ichimoku").checked ?
       this.$create_Ichimoku(ohlc_data) : this.$remove_chart(".ichimoku-part")
-    },
+    }, /* createIchimoku() */
+    
     createCustomed_1() {
       document.querySelector("#check_customed_tool_1").checked ?
       this.$create_Customed_Tool_1(ohlc_data) : this.$remove_chart(".customed_tool_1-part")
-    },
+    }, /* createCustomed_1() */
+
   }
 }
 </script>
@@ -116,15 +129,18 @@ main {
     display: flex;
     height: 10vh;
     justify-content: space-between;
+    align-items: flex-end;
     border-bottom: 0.5px solid gray;
     padding-left: 1vw;
+    padding-right: 0.5vw;
+}
+#info-n-setting > div {
+    padding-bottom: 0.8vh;
 }
 /* Chart 상단 - 종목명 */
 #info-n-setting #name-container {
     color: white;
     width: 30%;
-    /* height: ; */
-    align-items: baseline;
     font-size: 30px;
     font-weight: bold;
     overflow: hidden;
@@ -137,7 +153,6 @@ main {
     font-size: 30px;
     font-weight: bold;
 }
-
 /* Chart 상단 - 종목 정보 */
 #info-n-setting #info {
     width: 55%;
@@ -153,29 +168,37 @@ main {
     margin-right: 2vw;
 }
 /* Chart 상단 - 보조지표 선택 */
-#info-n-setting #chart-tool {
+#info-n-setting #tools {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 10%;
-    height: 50%;
+    height: 100%;
     padding: 0;
     text-align: right;
-    margin-top: 24px;
     color: white;
 }
-#chart-tool span {
-    margin-right: 10px;
+#tools div:nth-child(1) {
+    width: 100%;
+    height: 50%;
+    text-decoration: underline;
 }
-#chart-tool span:hover {
+#tools div:nth-child(1):hover {   
     cursor: pointer;
 }
-#chart-tool #dropdown_off::after {
-    content: "▼";
-    margin-right: 8px;
-    float: right;
+#tools div:nth-child(2) {
+    width: 100%;
+    height: 45%;
+    padding-bottom: 0.5vh;
 }
-#chart-tool #dropdown_on::after {
+#tools div:nth-child(2):hover {
+    cursor: pointer;
+}
+#tools #dropdown_off::after {
+    content: "▼";
+}
+#tools #dropdown_on::after {
     content: "▲";
-    margin-right: 8px;
-    float: right;
 }
 
 /* Chart 하단(메인) */

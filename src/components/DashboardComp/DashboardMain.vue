@@ -9,18 +9,18 @@
       </select>
     </div>
     <div id="charts">
-      <CoverChart v-for="(info, i) in BasicInfo" :key="i"
+      <DashboardCoverChart v-for="(info, i) in BasicInfo" :key="i"
         :name="info.Assets" :state="info.States" :code="info.Codes"/>
     </div>
   </main>
 </template>
 
 <script>
-import CoverChart from "@/components/DashboardComp/DashboardCoverChart.vue"
+import DashboardCoverChart from "@/components/DashboardComp/DashboardMain/DashboardCoverChart.vue"
 import basic_info from "@/assets/basic_info.json"
 
 export default {
-  components: { CoverChart },
+  components: { DashboardCoverChart },
   data() {
     return {
       BasicInfo: basic_info,

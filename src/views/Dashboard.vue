@@ -1,11 +1,11 @@
 <template>
-  <MainComponent/>
+  <DashboardMain/>
 </template>
 
 <script>
-import MainComponent from "@/components/DashboardComp/DashboardMain.vue"
+import DashboardMain from "@/components/DashboardComp/DashboardMain.vue"
 
 export default {
-  components: { MainComponent },
+  components: { DashboardMain },
 }
 </script>

@@ -4,7 +4,7 @@
     <div class="files" style="color: white"><AssetChartFiles/></div>
     <div class="record" style="color: white"><AssetChartRecord/></div>
     <div class="on-watch" style="color: white"><AssetChartOnWatch/></div>
-    <div class="memo" style="color: white"><AssetChartMemo/></div>    
+    <div class="memo" style="color: white"><AssetChartMemo/></div>
   </div>
 </template>
 
@@ -62,19 +62,5 @@ export default {
     grid-area: m;
     border-left: 0.5px solid gray;
 }
-/* #asset-chart::-webkit-scrollbar-track {
-	background-color: black;
-}
-
-#asset-chart::-webkit-scrollbar {
-	background-color: black;
-	width: 10px;
-}
-
-#asset-chart::-webkit-scrollbar-thumb {
-	border-radius: 30px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #333;
-} */
 
 </style>
