@@ -1,44 +1,29 @@
 <template>
   <nav id="displayer">
     <!-- class명 부여한 것도 inline-css로 적용됨-그래서 이동 과정 중에 css효과 깨짐, 색상/폰트 부여는 JS로 처리해야할 듯 -->
+    <!-- JSON 데이터 구조 다시 한 번 생각, v-for로 간결하게 돌릴 수 있는 방법 없을까?-->
     <div id="contents">
-      <div><p>USD/KRW</p><p>1,327.00 <span class="minus">▼2.00 -0.15%</span></p></div>
-      <div><p>CNY/KRW</p><p>181.89 <span class="minus">▼0.62 -0.34%</span></p></div>
-      <div><p>HKD/KRW</p><p>168.87 <span class="minus">▼0.29 -0.17%</span></p></div>
-      <div><p>SGD/KRW</p><p>976.74 <span class="minus">▼1.51 -0.15%</span></p></div>
-      <div><p>B.Rate(KR)</p><p>3.50%</p></div>
-      <div><p>B.Rate(US)</p><p>5.50%</p></div>
-      <div><p>KOSPI</p><p>2,519.14 <span class="minus">▼18.54 -0.73%</span></p></div>
-      <div><p>NASDAQ</p><p>13,590.65 <span class="plus">▲126.67 +0.94%</span></p></div>
-      <div><p>S&P500</p><p>4,405.71 <span class="plus">▲29.40 +0.67%</span></p></div>
-      <div><p>DJI</p><p>34,346.90 <span class="plus">▲247.48 +0.73%</span></p></div>
+      <div><p>USD/KRW</p><p>1,327.00 <span class="minus">2.00</span> <span class="minus">-0.15</span></p></div>
+      <div><p>CNY/KRW</p><p>181.89 <span class="minus">0.62</span> <span class="minus">-0.34</span></p></div>
+      <div><p>HKD/KRW</p><p>168.87 <span class="minus">0.29</span> <span class="minus">-0.17</span></p></div>
+      <div><p>SGD/KRW</p><p>976.74 <span class="minus">1.51</span> <span class="minus">-0.15</span></p></div>
+      <div><p>Basis Rate(KR)</p><p>3.50 <span class="zero"></span> <span class="zero"></span></p></div>
+      <div><p>Basis Rate(US)</p><p>5.50 <span class="zero"></span> <span class="zero"></span></p></div>
+      <!-- class가 zero이면 안의 textContent를 없애는 걸로 JS 작성 -->
+      <div><p>KOSPI</p><p>2,519.14 <span class="minus">18.54</span> <span class="minus">-0.73</span></p></div>
+      <div><p>NASDAQ</p><p>13,590.65 <span class="plus">126.67</span> <span class="plus">0.94</span></p></div>
+      <div><p>S&P500</p><p>4,405.71 <span class="plus">29.40</span> <span class="plus">0.67</span></p></div>
+      <div><p>DJI</p><p>34,346.90 <span class="plus">247.48</span> <span class="plus">0.73</span></p></div>
     </div>
   </nav>
 </template>
 
 <script>
+import Global_Index_Table from "@/assets/Global_Index_Table.json"
 export default {
   mounted(){
-    // const contents = document.querySelectorAll('#contents div');
-    // for(const i in contents) {
-    //   setInterval(()=>{
-    //     setTimeout(()=>{
-    //       contents[i].removeAttribute('style');
-    //       contents[i].style.transform="translateX(-" + String(14*(i+1)) + "vw)";
-    //       contents[i].style.transition = String(2*(i+1)) + "s linear";
-    //     });
-    //     setTimeout(()=>{
-    //       contents[i].removeAttribute('style');
-    //       contents[i].style.transform="translateX(" + String(14*(i+10)) + "vw)";
-    //     }, 2000);
-    //     setTimeout(()=>{
-    //       contents[i].removeAttribute('style');
-    //       contents[i].style.transform="translateX(-" + String(14*(i+1)) + "vw)";
-    //       contents[i].style.transition = String(2*(i+10)) + "s linear";
-    //       contents[i].removeAttribute('style');
-    //     }, 2100);
-    //   }, 20000);
-    // }
+    const data = Global_Index_Table;
+
 
     setInterval(()=>{
       try {
@@ -98,10 +83,11 @@ export default {
 #contents div p span {
     font-size: 12px;
 }
-.minus {
-    color: red;
-}
-.plus {
-    color: green;
-}
+.plus { color: green; }
+.plus:nth-child(1)::before { content: "▲"; }
+.plus:nth-child(2)::before { content: "+"}
+.minus { color: red; }
+.minus:nth-child(1)::before { content: "▼"; }
+.plus:nth-child(2)::after, .minus:nth-child(2)::after { content: "%"; }
+
 </style>
