@@ -296,25 +296,48 @@ export default {
                 );
             
                 /* 일목균형표 구름대 */
-                g.append("path")
-                    .datum(ICHIMOKU_SENKOU_SPAN.slice(51, ICHIMOKU_SENKOU_SPAN.length))
-                    .attr("class", "ichimoku-part")
-                    .attr("fill", "#3af030")
-                    .style("opacity", 0.18)
-                    .attr("d", d3.area()
-                    .x((d) => xScale(d.date)+xScale.bandwidth()/2)
-                    .y0((d) => yScale(d.Senkou_B))
-                    .y1((d) => yScale(d.Senkou_A))
-                    );
-                //  g.append("path")
-                //  .datum(ICHIMOKU_SENKOU_SPAN.slice(51, ICHIMOKU_SENKOU_SPAN.length))
-                //  .attr("fill", "orange")
-                //  .style("opacity", 0.18)
-                //  .attr("d", d3.area()
-                //   .x((d) => xScale(String(d.date))+xScale.bandwidth()/2)
-                //   .y0((d) => yScale(d.Senkou_A))
-                //   .y1((d) => yScale(d.Senkou_B))
-                //  );
+                // 1. 상승
+                g.append('clipPath')
+                 .datum(ICHIMOKU_SENKOU_SPAN.slice(51, ICHIMOKU_SENKOU_SPAN.length))
+                 .attr('id', 'bull-side-cloud')
+                 .append('path')
+                 .attr('d', d3.area()
+                     .x(d => xScale(d.date)+xScale.bandwidth()/2)
+                     .y0(d => 0)
+                     .y1(d => yScale(d.Senkou_B))
+                 );
+                g.append('path')
+                 .datum(ICHIMOKU_SENKOU_SPAN.slice(51, ICHIMOKU_SENKOU_SPAN.length))
+                 .attr('clip-path', "url(#bull-side-cloud)")
+                 .attr("class", "ichimoku-part")
+                 .attr("fill", "#3af030")
+                 .style("opacity", 0.2)
+                 .attr("d", d3.area()
+                     .x(d => xScale(d.date)+xScale.bandwidth()/2)
+                     .y0(d => yScale(d.Senkou_B))
+                     .y1(d => yScale(d.Senkou_A))
+                 );
+                // 2. 하락
+                g.append('clipPath')
+                 .datum(ICHIMOKU_SENKOU_SPAN.slice(51, ICHIMOKU_SENKOU_SPAN.length))
+                 .attr('id', 'bear-side-cloud')
+                 .append('path')
+                 .attr('d', d3.area()
+                     .x(d => xScale(d.date)+xScale.bandwidth()/2)
+                     .y0(d => 0)
+                     .y1(d => yScale(d.Senkou_A))
+                 );
+                g.append('path')
+                 .datum(ICHIMOKU_SENKOU_SPAN.slice(51, ICHIMOKU_SENKOU_SPAN.length))
+                 .attr('clip-path', "url(#bear-side-cloud)")
+                 .attr("class", "ichimoku-part")
+                 .attr("fill", "orange")
+                 .style("opacity", 0.2)
+                 .attr("d", d3.area()
+                     .x(d => xScale(d.date)+xScale.bandwidth()/2)
+                     .y0(d => yScale(d.Senkou_A))
+                     .y1(d => yScale(d.Senkou_B))
+                 );            
             
             } // function : $create_Ichimoku
 
