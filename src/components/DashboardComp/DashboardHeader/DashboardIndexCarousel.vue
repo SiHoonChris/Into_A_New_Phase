@@ -3,12 +3,22 @@
     <div id="slide-track">
       <div v-for="(data, i) in Object.keys(DATAS[DATAS.length-1])" :key="i" class="slide">
         <p>{{data}}</p>
-        <p>{{DATAS[DATAS.length-1][data]}} 
-          <span class="minus">
-            {{Math.abs(DATAS[DATAS.length-1][data]-DATAS[DATAS.length-2][data]).toFixed(2)}}
+        <p>{{DATAS[DATAS.length-1][data].toLocaleString()}} 
+          <span class="diff">
+            {{
+              Number(
+                Math.abs(DATAS[DATAS.length-1][data]-DATAS[DATAS.length-2][data]).toFixed(2)
+              ).toLocaleString()+" "
+            }}
           </span> 
-          <span class="minus">
-            {{((DATAS[DATAS.length-1][data] - DATAS[DATAS.length-2][data]) / DATAS[DATAS.length-2][data] * 100).toFixed(2)}}
+          <span class="diff">
+            {{
+              Number(
+                (
+                  (DATAS[DATAS.length-1][data] - DATAS[DATAS.length-2][data]) / DATAS[DATAS.length-2][data] * 100
+                ).toFixed(2)
+              ).toLocaleString()
+            }}
           </span>
         </p>
       </div>
@@ -17,16 +27,25 @@
 </template>
 
 <script>
-import Global_Index_Table from "@/assets/Global_Index_Table.json"
-
 export default {
   data() {
     return {
-      DATAS: Global_Index_Table
+      DATAS: []
     }
   },
   mounted(){
-    // 실제 이름으로 변경 : SPX => S&P500 , BRKR => Basis Rate(KR) , BRUS => Basis Rate(US) , _ => /
+    this.$http.get("/getGlobalIndexTableDatas")
+      .then(res => {
+        console.log(res.data);
+        this.DATAS = res.data;
+      })
+      .catch(err => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('Error')
+        }
+      })
+
+    // Fullname Transition
     for(const E of document.querySelectorAll(".slide > p:first-child")) {
       let fullName;
       fullName = E.textContent.includes("_") ? E.textContent.replace("_", "/") : E.textContent ;
@@ -35,24 +54,32 @@ export default {
             fullName = "S&P 500";
             break;
         case "BRKR":
-            fullName = "Basis Rate (KR)";
+            fullName = "Basis (KR)";
             break;
         case "BRUS":
-            fullName = "Basis Rate (US)";
+            fullName = "Basis (US)";
             break;
         default:
             fullName;
       }
       E.textContent = fullName;
     }
-  //     // 전일 대비, 상승-하락-보합
-  //     let E_mathSymbol;
-  //     if(Number(E_diff) === 0) E_mathSymbol = "zero";
-  //     else if (Number(E_diff) > 0) E_mathSymbol = "plus";
-  //     else E_mathSymbol = "minus";
-
-    // class가 zero일 경우, 값 없애기
-    for(const E of document.querySelectorAll(".zero")) { E.textContent = ""; }
+    
+    // Volume of Difference Comparing to Previous Day
+    for(const I of document.querySelectorAll(".slide > p:nth-child(2) > span:nth-child(2)")) {
+      if (Number(I.textContent) === 0) {
+        I.className = "zero";
+        I.previousSibling.className = "zero";
+        I.textContent = "";
+        I.previousSibling.textContent = "";
+      } else if (Number(I.textContent) > 0) {
+        I.className = "plus";
+        I.previousSibling.className = "plus";
+      } else {
+        I.className = "minus"
+        I.previousSibling.className = "minus";
+      };
+    }
 
     // Carousel
     const CLONE = document.querySelector('#slide-track').cloneNode(true);

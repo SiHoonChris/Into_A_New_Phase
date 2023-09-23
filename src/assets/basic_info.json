@@ -1,8 +1,8 @@
 [
     {"Assets": "Dummy",                               "Codes": "DUM",     "States": "BULL"     },
-    {"Assets": "Apple",                               "Codes": "AAPL",    "States": "UNDECIDED"},
+    {"Assets": "Apple",                               "Codes": "AAPL",    "States": "UNSET"    },
     {"Assets": "Samsung Electric",                    "Codes": "005930",  "States": "BEAR"     },
     {"Assets": "Microsoft",                           "Codes": "MSFT",    "States": "BULL"     },
-    {"Assets": "JPMorgan Equity Premium Income ETF",  "Codes": "JEPI",    "States": "UNDECIDED"},
+    {"Assets": "JPMorgan Equity Premium Income ETF",  "Codes": "JEPI",    "States": "UNSET"    },
     {"Assets": "Alphabet",                            "Codes": "GOOGL",   "States": "BEAR"     }
 ]
