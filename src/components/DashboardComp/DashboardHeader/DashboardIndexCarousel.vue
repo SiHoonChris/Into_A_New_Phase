@@ -33,37 +33,16 @@ export default {
       DATAS: []
     }
   },
-  mounted(){
+  created(){
     this.$http.get("/getGlobalIndexTableDatas")
-      .then(res => {
-        console.log(res.data);
-        this.DATAS = res.data;
-      })
-      .catch(err => {
-        if (err.message.indexOf('Network Error') > -1) {
-          alert('Error')
-        }
-      })
-
-    // Fullname Transition
-    for(const E of document.querySelectorAll(".slide > p:first-child")) {
-      let fullName;
-      fullName = E.textContent.includes("_") ? E.textContent.replace("_", "/") : E.textContent ;
-      switch(fullName) {
-        case "SPX":
-            fullName = "S&P 500";
-            break;
-        case "BRKR":
-            fullName = "Basis (KR)";
-            break;
-        case "BRUS":
-            fullName = "Basis (US)";
-            break;
-        default:
-            fullName;
-      }
-      E.textContent = fullName;
-    }
+      .then(res => this.DATAS = res.data)
+      .catch(err => console.log(err.message))
+  },
+  mounted(){
+    // Carousel
+    const CLONE = document.querySelector('#slide-track').cloneNode(true);
+    CLONE.id = "slide-track-cloned";
+    document.querySelector("#slide-track").appendChild(CLONE);
     
     // Volume of Difference Comparing to Previous Day
     for(const I of document.querySelectorAll(".slide > p:nth-child(2) > span:nth-child(2)")) {
@@ -80,11 +59,6 @@ export default {
         I.previousSibling.className = "minus";
       };
     }
-
-    // Carousel
-    const CLONE = document.querySelector('#slide-track').cloneNode(true);
-    CLONE.id = "slide-track-cloned";
-    document.querySelector("#slide-track").appendChild(CLONE);
   }
 }
 </script>
