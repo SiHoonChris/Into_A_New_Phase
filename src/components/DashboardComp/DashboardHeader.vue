@@ -2,11 +2,11 @@
   <header>
     <div id="nav">
       <nav id="navigation">
-        <span @click="moveToMain">Main</span>
-        <span>Portfolio</span>
-        <span>Balance Sheet</span>
-        <span>Income Stat.</span>
-        <span>Transaction</span>
+        <span @click="moveTo('main')">Main</span>
+        <span @click="moveTo('portfolio')">Portfolio</span>
+        <span @click="moveTo('balance_sheet')">Balance Sheet</span>
+        <span @click="moveTo('income_stat')">Income Stat.</span>
+        <span @click="moveTo('transaction')">Transaction</span>
       </nav>
       <DashboardIndexCarousel/>
     </div>
@@ -23,8 +23,8 @@ import DashboardTotalTransaction from "@/components/DashboardComp/DashboardHeade
 export default {
   components: { DashboardIndexCarousel, DashboardTotalTransaction },
   methods: {
-    moveToMain() {
-      this.$router.push("/");
+    moveTo(where) {
+      this.$router.push({name: where});
     }
   }
 }
