@@ -1,3 +1,11 @@
 <template>
-    <div style="color: white;">portfolio</div>
+    <PortfolioMain/>
 </template>
+
+<script>
+import PortfolioMain from "@/components/PortfolioComp/PortfolioMain.vue"
+
+export default {
+  components: {PortfolioMain}
+}
+</script>

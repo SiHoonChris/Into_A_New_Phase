@@ -27,9 +27,12 @@
 </template>
 
 <script>
+// import Global_Index_Table from "@/assets/Global_Index_Table.json"
+
 export default {
   data() {
     return {
+      // DATAS: Global_Index_Table
       DATAS: []
     }
   },

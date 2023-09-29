@@ -1,3 +1,11 @@
 <template>
-    <div style="color: white;">Income Statement</div>
+    <IncomeStatMain/>
 </template>
+
+<script>
+import IncomeStatMain from "@/components/IncomeStatComp/IncomeStatMain.vue"
+
+export default {
+  components: {IncomeStatMain}
+}
+</script>
