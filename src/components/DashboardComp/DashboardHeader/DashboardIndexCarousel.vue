@@ -27,13 +27,10 @@
 </template>
 
 <script>
-// import Global_Index_Table from "@/assets/Global_Index_Table.json"
-
 export default {
   data() {
     return {
-      // DATAS: Global_Index_Table
-      DATAS: []
+      DATAS: [{}]
     }
   },
   created(){
@@ -41,7 +38,7 @@ export default {
       .then(res => this.DATAS = res.data)
       .catch(err => console.log(err.message))
   },
-  mounted(){
+  updated(){
     // Carousel
     const CLONE = document.querySelector('#slide-track').cloneNode(true);
     CLONE.id = "slide-track-cloned";
