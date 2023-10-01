@@ -1,17 +1,18 @@
 <template>
   <div id="portfolio-container">
     <div id="portfolio-content">
-      <div id="debt-ratio-chart"></div>
-      <div id="customed-portfolios"></div>
+      <CurrentPortfolio/>
+      <CustomedPortfolio/>
     </div>
   </div>
 </template>
 
 <script>
+import CurrentPortfolio from "@/components/PortfolioComp/PortfolioMain/CurrentPortfolio.vue"
+import CustomedPortfolio from "@/components/PortfolioComp/PortfolioMain/CustomedPortfolio.vue"
+
 export default {
-  mounted() {
-    this.$create_Donut();
-  }
+  components: { CurrentPortfolio, CustomedPortfolio },
 }
 </script>
 
@@ -22,19 +23,12 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-left: 4vw;
     }
     #portfolio-content {
         display: flex;
+        justify-content: space-between;
         width: 76%;
         height: 70vh;
-        /* border: 1px solid grey; */
-    }
-    #debt-ratio-chart {
-        width: 40%;
-        /* border: 1px solid green; */
-    }
-    #customed-portfolios{
-        width: 60%;
-        border: 1px solid grey;
     }
 </style>

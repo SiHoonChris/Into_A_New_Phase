@@ -32,16 +32,16 @@ export default {
     position: absolute;
     top: 20vh;
     left: 20vw;
-    width: 60vw;
-    height: 60vh;
+    width: 62vw;
+    height: 68vh;
     border: 3.4px solid white;
     border-radius: 16px;
     background: rgba(0, 0, 0, 0.7);
     z-index: 10;
 }
 #Popup-contents {
-    width: 95%;
-    height: 89%;
+    width: 94%;
+    height: 88%;
     margin: 3% auto;
     overflow-y: scroll;
 }
