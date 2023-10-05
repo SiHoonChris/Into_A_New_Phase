@@ -11,15 +11,14 @@ CREATE TABLE Balance_Sheet_Table (
     AccmComp  DECIMAL(10, 0)  NOT NULL  DEFAULT 0  -- Accumulated Other Comprehensive Earn/Loss
 );
 
--- Per Year ( 재검 => 유량이 아니라 저량의 개념, 가장 최근 분기 내용이 연 단위 기록임 / 합계 사용 안해 )
-SELECT    Y,  
-          SUM(CshEqv) AS YCshEqv, SUM(StInvst) AS YStInvst, YCshEqv+YStInvst AS YCAst, SUM(NCAst) AS YNCAst, YCAst+YNCAst AS YTAst, 
-          SUM(CLbt) AS YCLbt, SUM(NCLbt) AS YNCLbt, YCLbt+YNCLbt AS YTLbt, 
-          SUM(Cptl) AS YCptl, SUM(RE) AS YRE, SUM(AccmComp) AS YAccmComp, YCptl+YRE+YAccmComp AS YTEqt, 
-          YTLbt+YTEqt AS YSumLbtEqt 
+-- Per Year(통과)
+SELECT    Y, 
+          CshEqv, StInvst, CshEqv+StInvst AS CAst, NCAst, CshEqv+StInvst+NCAst AS TAst, 
+          CLbt, NCLbt, CLbt+NCLbt AS TLbt, 
+          Cptl, RE, AccmComp, Cptl+RE+AccmComp AS TEqt, 
+          CLbt+NCLbt+Cptl+RE+AccmComp AS SumLbtEqt 
 FROM      Balance_Sheet_Table 
-WHERE     Y > ${param0}   -- param0 = (올해 연도) - 3
-GROUP BY  Y 
+WHERE     (Y < ${today.getUTCFullYear()} AND Y > ${today.getUTCFullYear()-3} AND Q = 4) OR (Y = ${today.getUTCFullYear()} AND Q = ${Math.ceil((today.getUTCMonth()+1)/3)})
 ORDER BY  Y DESC; 
 
 -- Per Quarter (통과)
