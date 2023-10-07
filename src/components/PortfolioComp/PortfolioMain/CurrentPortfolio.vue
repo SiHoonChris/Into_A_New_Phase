@@ -6,18 +6,10 @@
         <span>Evaluation : 6.34%</span>
     </div>
     <div id="cur-portf-component"> <!--소수점 아래 4자리-->
-        <div class="component"><span class="color-id">■</span>AAPL  50.7423%</div>
-        <div class="component"><span class="color-id">■</span>MSFT  36.2134%</div>
-        <div class="component"><span class="color-id">■</span>AAPL  50.7423%</div>
-        <div class="component"><span class="color-id">■</span>MSFT  36.2134%</div>
-        <div class="component"><span class="color-id">■</span>AAPL  50.7423%</div>
-        <div class="component"><span class="color-id">■</span>MSFT  36.2134%</div>
-        <div class="component"><span class="color-id">■</span>AAPL  50.7423%</div>
-        <div class="component"><span class="color-id">■</span>MSFT  36.2134%</div>
-        <div class="component"><span class="color-id">■</span>AAPL  50.7423%</div>
-        <div class="component"><span class="color-id">■</span>MSFT  36.2134%</div>
-        <div class="component"><span class="color-id">■</span>AAPL  50.7423%</div>
-        <div class="component"><span class="color-id">■</span>MSFT  36.2134%</div>
+        <div v-for="(name, i) in Object.keys(PF_Data)" :key="i" class="component">
+            <span class="color-id">■</span>
+            {{name}}  {{(PF_Data[name] / this.PF_Data_Sum * 100).toFixed(4)}}%
+        </div>
     </div>
   </div>
 </template>
@@ -26,8 +18,14 @@
 export default {
   data() {
     return {
-      PF_Data: { debt: 432, equity: 574 }
+      PF_Data: { GOOGL: 8900, AAPL: 2353, MSFT: 5323, KO: 1890 },
+      PF_Data_Sum: 0,
+      PF_Data_color: ["green", "blue", "yellow", "red", "blue", "lemon"] // 순서대로 색상 입혀진 후, d3에서 자동으로 큰 순서대로 재배열함
     }
+  },
+  created(){
+    this.PF_Data_Sum = Object.values(this.PF_Data).reduce((a, b)=> a + b, 0 );
+    this.PF_Data_color = this.PF_Data_color.slice(0, Object.keys(this.PF_Data).length);
   },
   mounted() {
     if(document.querySelectorAll("#cur-portf-chart > svg").length === 0) {
@@ -46,7 +44,7 @@ export default {
                         .attr("transform", "translate(" + WIDTH / 2 + "," + HEIGHT / 2 + ")");
                 
         // set the color scale
-        const color = d3.scaleOrdinal().range(["#66ff33", "#0033cc"])
+        const color = d3.scaleOrdinal().range(this.PF_Data_color)
 
         // Compute the position of each group on the pie:
         const pie = d3.pie().value(d => d[1]);
@@ -66,7 +64,13 @@ export default {
             .attr("stroke", "white")
             .style("stroke-width", "1.4px");
     }
-  } 
+
+    let colorIndicator = document.querySelectorAll(".color-id"), i = 0;
+    for(const d of colorIndicator) {
+        d.style.color = this.PF_Data_color[i];
+        i++;
+    }
+  }
 }
 </script>
 
@@ -85,7 +89,7 @@ export default {
         justify-content: center;
     }
     #cur-portf-yield {
-        width: 90%;
+        width: 84%;
         height: 6%;
         color: white;
         display: flex;

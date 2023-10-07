@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="setting">
-      <input id="search" type="text" placeholder="Search"/>
+      <input id="search" type="text" placeholder="Search" v-model="searchText"/>
       <select>
         <option value="all">All</option>
         <option value="hold">Hold</option>
@@ -24,6 +24,19 @@ export default {
   data() {
     return {
       BasicInfo: basic_info,
+      searchText: '',
+      searchTarget: []
+    }
+  },
+  mounted(){
+    this.searchTarget = document.querySelectorAll(".caption span:first-child");
+  },
+  watch: {
+    searchText: function(val) {
+      for(const T of this.searchTarget) {
+        if(T.textContent.toLowerCase().includes(val.toLowerCase())) T.parentNode.parentNode.style.display="block";
+        else T.parentNode.parentNode.style.display="none";
+      }
     }
   },
   methods: {}

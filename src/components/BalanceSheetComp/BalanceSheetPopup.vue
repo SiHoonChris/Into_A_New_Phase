@@ -1,25 +1,16 @@
 <template>
   <div id="Popup-container" @dblclick="popUpOff">
     <div id="Popup-contents">
-      <BalanceSheetQuarterTable :Q_DATAS="Q_DATAS"/>
+      <BalanceSheetQuarterTable/>
     </div>
   </div>
 </template>
 
 <script>
 import BalanceSheetQuarterTable from '@/components/BalanceSheetComp/BalanceSheetPopup/BalanceSheetPopupTable.vue'
-import BalanceSheet_Qt_DATA from '@/assets/BS_Q_data.json'
 
 export default {
   components: { BalanceSheetQuarterTable },
-  props: ['BS_DATAS'],
-    data() {
-        return {
-            Q_DATAS: BalanceSheet_Qt_DATA
-        }
-    },
-  mounted(){
-  },
   methods: {
     popUpOff() { document.querySelector("#Popup-container").style.display = "none" }
   }

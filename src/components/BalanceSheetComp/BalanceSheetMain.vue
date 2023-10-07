@@ -4,7 +4,7 @@
         <p>Balance Sheets</p>
         <p>(Won, \)</p>
     </div>
-    <BalanceSheetTable :DATAS="DATAS"/>
+    <BalanceSheetTable/>
     <BalanceSheetPopup/>
   </div>
 </template>
@@ -12,15 +12,9 @@
 <script>
 import BalanceSheetTable from '@/components/BalanceSheetComp/BalanceSheetMain/BalanceSheetMainTable.vue'
 import BalanceSheetPopup from '@/components/BalanceSheetComp/BalanceSheetPopup.vue'
-import BS_DATA from '@/assets/BS_data.json'
 
 export default {
-    components: { BalanceSheetTable, BalanceSheetPopup },
-    data(){
-        return {
-            DATAS: BS_DATA.slice(0, 3)
-        }
-    },
+    components: { BalanceSheetTable, BalanceSheetPopup }
 }
 </script>
 

@@ -4,5 +4,8 @@
     {"Assets": "Samsung Electric",                    "Codes": "005930",  "States": "BEAR"     },
     {"Assets": "Microsoft",                           "Codes": "MSFT",    "States": "BULL"     },
     {"Assets": "JPMorgan Equity Premium Income ETF",  "Codes": "JEPI",    "States": "UNSET"    },
-    {"Assets": "Alphabet",                            "Codes": "GOOGL",   "States": "BEAR"     }
+    {"Assets": "Alphabet",                            "Codes": "GOOGL",   "States": "BEAR"     },
+    {"Assets": "Starbuck",                            "Codes": "SBUX",    "States": "BULL"     },
+    {"Assets": "Samsung SDS",                         "Codes": "018260",  "States": "BEAR"     },
+    {"Assets": "Samsung Biologics",                   "Codes": "207940",  "States": "BEAR"     }
 ]

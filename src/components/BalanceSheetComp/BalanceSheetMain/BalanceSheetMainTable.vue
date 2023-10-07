@@ -3,93 +3,57 @@
       <thead>
           <tr>
             <th class="criterion">December 31,</th>
-            <th v-for="(data, i) in DATAS" :key="i" @click="quartersPopup">{{data.Year}}</th>
+            <th v-for="(data, i) in DATAS" :key="i" @click="quartersPopup(data.Y)">{{data.Y}}</th>
           </tr>
       </thead>
       <tbody>
         <tr class="sector"><td>Assets</td><td colspan="3"></td></tr>
         <tr class="sub-sector"><td>Current assets</td><td colspan="3"></td></tr>
         <tr class="in-sub-sector"><td>Cash and cash equivalents</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Assets.CurrentAssets.CashAndCashEquivalents).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.CshEqv.toLocaleString()}}</td>
         </tr>
         <tr class="in-sub-sector"><td>Short-term investments</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Assets.CurrentAssets.ShortTermInvestments).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.StInvst.toLocaleString()}}</td>
         </tr>
         <tr class="in-sub-sector"><td>Total current assets</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Assets.CurrentAssets.CashAndCashEquivalents
-                    +data.Assets.CurrentAssets.ShortTermInvestments).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.CAst.toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Non-current assets</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Assets.NonCurrentAssets).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.NCAst.toLocaleString()}}</td>
         </tr>
         <tr class="sum"><td>Total assets</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Assets.CurrentAssets.CashAndCashEquivalents
-                    +data.Assets.CurrentAssets.ShortTermInvestments
-                    +data.Assets.NonCurrentAssets).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.TAst.toLocaleString()}}</td>
         </tr>
         <tr class="space"><td colspan="4"></td></tr>
         
         <tr class="sector"><td>Liabilities</td><td colspan="3"></td></tr>
         <tr class="sub-sector"><td>Current liabilities</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Liabilities.CurrentLiabilities).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.CLbt.toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Non-current liabilities</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Liabilities.NonCurrentLiabilities).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.NCLbt.toLocaleString()}}</td>
         </tr>
         <tr class="sum"><td>Total Liabilities</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Liabilities.CurrentLiabilities
-                    +data.Liabilities.NonCurrentLiabilities).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.TLbt.toLocaleString()}}</td>
         </tr>
         
         <tr class="sector"><td>Equity</td><td colspan="3"></td></tr>
         <tr class="sub-sector"><td>Capital</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Equity.Capital).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.Cptl.toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Retained earnings</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Equity.RetainedEarnings).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.RE.toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Accumulated other comprehensive earn/loss</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Equity.AccumulatedOtherComprehensive).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.AccmComp.toLocaleString()}}</td>
         </tr>
         <tr class="sum"><td>Total equity</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Equity.Capital
-                    +data.Equity.RetainedEarnings
-                    +data.Equity.AccumulatedOtherComprehensive).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.TEqt.toLocaleString()}}</td>
         </tr>
         <tr class="space"><td colspan="4"></td></tr>
 
         <tr class="sum"><td>Total liabilities and equity</td>
-            <td v-for="(data, i) in DATAS" :key="i">
-                {{(data.Liabilities.CurrentLiabilities
-                    +data.Liabilities.NonCurrentLiabilities
-                    +data.Equity.Capital
-                    +data.Equity.RetainedEarnings
-                    +data.Equity.AccumulatedOtherComprehensive).toLocaleString()}}
-            </td>
+            <td v-for="(data, i) in DATAS" :key="i">{{data.SumLbtEqt.toLocaleString()}}</td>
         </tr>
       </tbody>
     </table>
@@ -97,16 +61,21 @@
 
 <script>
 export default {
-    props: ['DATAS'],
     data() {
         return {
-            DATAS: this.DATAS
+            DATAS: [{}],
         }
     },
+    created(){
+      this.$http.get("/getBalanceSheetPerYear")
+        .then(res => this.DATAS = res.data)
+        .catch(err => console.log(err.message));
+    },
     methods:{
-        quartersPopup() {
+        quartersPopup(year) {
+            console.log(year);
             document.querySelector('#Popup-container').style.display = 'block';
-        }, /* quartersPopup */
+        }
     }
 }
 </script>
