@@ -1,7 +1,7 @@
-<template>
+s<template>
   <section>
     <div class="caption">
-      <span>{{name}}</span>
+      <span :class="hold">{{name}}</span>
       <span>{{state}}</span>
     </div>
     <div class="candles" @click="moveToChartDetail()">
@@ -14,7 +14,7 @@
 import ohlc_data from '@/assets/GOOGL_data.json'
 
 export default {
-  props: ['name', 'state', 'code'],
+  props: ['name', 'state', 'code', 'hold'],
   methods:{
     moveToChartDetail: function(){
       this.$router.push({name: 'chart', params: {code: this.code}});

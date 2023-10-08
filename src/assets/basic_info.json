@@ -1,11 +1,11 @@
 [
-    {"Assets": "Dummy",                               "Codes": "DUM",     "States": "BULL"     },
-    {"Assets": "Apple",                               "Codes": "AAPL",    "States": "UNSET"    },
-    {"Assets": "Samsung Electric",                    "Codes": "005930",  "States": "BEAR"     },
-    {"Assets": "Microsoft",                           "Codes": "MSFT",    "States": "BULL"     },
-    {"Assets": "JPMorgan Equity Premium Income ETF",  "Codes": "JEPI",    "States": "UNSET"    },
-    {"Assets": "Alphabet",                            "Codes": "GOOGL",   "States": "BEAR"     },
-    {"Assets": "Starbuck",                            "Codes": "SBUX",    "States": "BULL"     },
-    {"Assets": "Samsung SDS",                         "Codes": "018260",  "States": "BEAR"     },
-    {"Assets": "Samsung Biologics",                   "Codes": "207940",  "States": "BEAR"     }
+    {"Assets": "Dummy",                               "Codes": "DUM",     "States": "BULL",   "Hold":"Y" },
+    {"Assets": "Apple",                               "Codes": "AAPL",    "States": "UNSET",  "Hold":"N" },
+    {"Assets": "Samsung Electric",                    "Codes": "005930",  "States": "BEAR",   "Hold":"Y" },
+    {"Assets": "Microsoft",                           "Codes": "MSFT",    "States": "BULL",   "Hold":"Y" },
+    {"Assets": "JPMorgan Equity Premium Income ETF",  "Codes": "JEPI",    "States": "UNSET",  "Hold":"N" },
+    {"Assets": "Alphabet",                            "Codes": "GOOGL",   "States": "BEAR",   "Hold":"N" },
+    {"Assets": "Starbuck",                            "Codes": "SBUX",    "States": "BULL",   "Hold":"Y" },
+    {"Assets": "Samsung SDS",                         "Codes": "018260",  "States": "BEAR",   "Hold":"N" },
+    {"Assets": "Samsung Biologics",                   "Codes": "207940",  "States": "BEAR",   "Hold":"Y" }
 ]
