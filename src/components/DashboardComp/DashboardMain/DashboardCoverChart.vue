@@ -1,4 +1,4 @@
-s<template>
+<template>
   <section>
     <div class="caption">
       <span :class="hold">{{name}}</span>

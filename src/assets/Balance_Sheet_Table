@@ -11,7 +11,7 @@ CREATE TABLE Balance_Sheet_Table (
     AccmComp  DECIMAL(10, 0)  NOT NULL  DEFAULT 0  -- Accumulated Other Comprehensive Earn/Loss
 );
 
--- Per Year(통과)
+-- Per Year
 SELECT    Y, 
           CshEqv, StInvst, CshEqv+StInvst AS CAst, NCAst, CshEqv+StInvst+NCAst AS TAst, 
           CLbt, NCLbt, CLbt+NCLbt AS TLbt, 
@@ -21,7 +21,7 @@ FROM      Balance_Sheet_Table
 WHERE     (Y < ${today.getUTCFullYear()} AND Y > ${today.getUTCFullYear()-3} AND Q = 4) OR (Y = ${today.getUTCFullYear()} AND Q = ${Math.ceil((today.getUTCMonth()+1)/3)})
 ORDER BY  Y DESC; 
 
--- Per Quarter (통과)
+-- Per Quarter
 SELECT    Q, 
           CshEqv, StInvst, CshEqv+StInvst AS CAst, NCAst, CshEqv+StInvst+NCAst AS TAst, 
           CLbt, NCLbt, CLbt+NCLbt AS TLbt, 

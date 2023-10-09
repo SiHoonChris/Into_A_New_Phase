@@ -24,8 +24,8 @@ export default {
   watch: {
     searchText: function(val) {
       for(const T of this.searchTarget) {
-        if(T.textContent.toLowerCase().includes(val.toLowerCase())) T.parentNode.parentNode.style.display="block";
-        else T.parentNode.parentNode.style.display="none";
+        T.parentNode.parentNode.style.display = 
+          T.textContent.toLowerCase().includes(val.toLowerCase()) ? "block" : "none" ;
       }
     },
     searchHold: function(val) {
@@ -38,7 +38,7 @@ export default {
             T.parentNode.parentNode.style.display = T.className === "N" ? "block" : "none" ; 
             break;
           default : 
-            T.parentNode.parentNode.style.display="block";
+            T.parentNode.parentNode.style.display = "block";
         }
       }
     }

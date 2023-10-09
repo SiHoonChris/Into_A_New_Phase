@@ -98,18 +98,24 @@ export default {
     }, /* activateDropdown() */
 
     createBollinger() {
+      this.$remove_chart(".candle"); this.$remove_chart(".tail");
       document.querySelector("#check_bollinger").checked ?
-      this.$create_Bollinger(ohlc_data) : this.$remove_chart(".bollinger-part")
+        this.$create_Bollinger(ohlc_data) : this.$remove_chart(".bollinger-part");
+      this.$create_Candle(920, 360, ohlc_data);
     }, /* createBollinger() */
 
     createIchimoku() {
+      this.$remove_chart(".candle"); this.$remove_chart(".tail");
       document.querySelector("#check_ichimoku").checked ?
-      this.$create_Ichimoku(ohlc_data) : this.$remove_chart(".ichimoku-part")
+        this.$create_Ichimoku(ohlc_data) : this.$remove_chart(".ichimoku-part")
+      this.$create_Candle(920, 360, ohlc_data);
     }, /* createIchimoku() */
     
     createCustomed_1() {
+      this.$remove_chart(".candle"); this.$remove_chart(".tail");
       document.querySelector("#check_customed_tool_1").checked ?
-      this.$create_Customed_Tool_1(ohlc_data) : this.$remove_chart(".customed_tool_1-part")
+        this.$create_Customed_Tool_1(ohlc_data) : this.$remove_chart(".customed_tool_1-part")
+      this.$create_Candle(920, 360, ohlc_data);
     }, /* createCustomed_1() */
 
   }

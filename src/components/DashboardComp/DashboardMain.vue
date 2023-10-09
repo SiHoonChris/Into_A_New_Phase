@@ -65,28 +65,27 @@ main {
 main::-webkit-scrollbar-track {
 	background-color: black;
 }
-
 main::-webkit-scrollbar {
 	background-color: black;
 	width: 10px;
 }
-
 main::-webkit-scrollbar-thumb {
 	border-radius: 30px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #333;
 }
+
 #setting {
     margin: 0;
-    height: 14.9%;
+    height: 16vh;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 #charts {
     margin: 0;
-    height: 85%;
     width: 100%;
     display: flex;
     flex-wrap: wrap;

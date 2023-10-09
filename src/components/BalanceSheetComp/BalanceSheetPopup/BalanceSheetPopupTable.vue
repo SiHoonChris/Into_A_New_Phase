@@ -3,7 +3,7 @@
       <thead>
           <tr>
             <th class="criterion">2023</th>
-            <th v-for="(data, i) in DATAS" :key="i">{{data.Q}}</th>
+            <th v-for="(data, i) in DATAS" :key="i">{{data.Q}}Q</th>
           </tr>
       </thead>
       <tbody>
@@ -112,7 +112,6 @@ export default {
     }
     .sum td:first-child {
         padding-left: 4.5%;
-        font-weight: bold;
     }
     .sum td {
         background: #ff8000;

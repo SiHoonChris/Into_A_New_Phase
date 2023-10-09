@@ -124,7 +124,6 @@ export default {
     }
     .sum td:first-child {
         padding-left: 4.5%;
-        font-weight: bold;
     }
     .sum td {
         background: #336600;
