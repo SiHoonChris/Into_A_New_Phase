@@ -25,7 +25,8 @@ export default {
     searchText: function(val) {
       for(const T of this.searchTarget) {
         T.parentNode.parentNode.style.display = 
-          T.textContent.toLowerCase().includes(val.toLowerCase()) ? "block" : "none" ;
+          T.textContent.toLowerCase().includes(val.toLowerCase()) || T.id.toLowerCase().includes(val.toLowerCase())
+           ? "block" : "none" ;
       }
     },
     searchHold: function(val) {
@@ -48,9 +49,8 @@ export default {
 
 <style scoped>
 #setting {
-    margin: 0;
-    height: 14.9%;
-    width: 100%;
+    margin: 0 2vw;
+    padding: 6.3vh 0;
     display: flex;
     justify-content: space-between;
     align-items: center;

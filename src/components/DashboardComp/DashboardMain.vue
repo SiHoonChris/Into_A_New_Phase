@@ -1,8 +1,8 @@
 <template>
-  <main>
+  <main @scroll="scroller">
     <DashboardSearchMethod/>
     <div id="charts">
-      <DashboardCoverChart v-for="(info, i) in BasicInfo" :key="i"
+      <DashboardCoverChart v-for="(info, i) in BasicInfo.slice(0, this.N)" :key="i"
         :name="info.Assets" :state="info.States" :code="info.Codes" :hold="info.Hold"/>
     </div>
   </main>
@@ -17,6 +17,7 @@ export default {
   components: { DashboardSearchMethod, DashboardCoverChart },
   data() {
     return {
+      N: 9,
       BasicInfo: basic_info,
       searchText: '',
       searchTarget: [],
@@ -28,27 +29,18 @@ export default {
   },
   watch: {
     searchText: function(val) {
-      for(const T of this.searchTarget) {
-        if(T.textContent.toLowerCase().includes(val.toLowerCase())) T.parentNode.parentNode.style.display="block";
-        else T.parentNode.parentNode.style.display="none";
-      }
+      this.BasicInfo = basic_info.filter(e => e.Assets.includes(val) || e.Codes.includes(val));
     },
     searchHold: function(val) {
-      for(const T of this.searchTarget) {
-        switch(val) {
-          case "Y" : 
-            T.parentNode.parentNode.style.display = T.className === "Y" ? "block" : "none" ; 
-            break;
-          case "N" : 
-            T.parentNode.parentNode.style.display = T.className === "N" ? "block" : "none" ; 
-            break;
-          default : 
-            T.parentNode.parentNode.style.display="block";
-        }
-      }
+      this.BasicInfo = basic_info.filter(e => e.Hold.includes(val));
     }
   },
-  methods: {}
+  methods: {
+    scroller(){
+      const D = document.querySelector("main");
+      if(D.scrollTop > (D.scrollHeight - D.clientHeight) * 0.98) this.N += 6;
+    }
+  }
 }
 </script>
 
@@ -57,10 +49,10 @@ main {
     margin: 0;
     height: 80vh;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 2vw;
+    flex-direction: column;
+    justify-content: flex-start;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 main::-webkit-scrollbar-track {
 	background-color: black;
@@ -75,21 +67,12 @@ main::-webkit-scrollbar-thumb {
 	background-color: #333;
 }
 
-#setting {
-    margin: 0;
-    height: 16vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 #charts {
-    margin: 0;
-    width: 100%;
+    margin-left: 2vw;
+    width: 98vw;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: left;
 }
 
 </style>

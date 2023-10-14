@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="caption">
-      <span :class="hold">{{name}}</span>
+      <span :id="code" :class="hold">{{name}}</span>
       <span>{{state}}</span>
     </div>
     <div class="candles" @click="moveToChartDetail()">
@@ -22,7 +22,7 @@ export default {
   },
   mounted(){
     let ohlcData = ohlc_data.slice(ohlc_data.length-40, ohlc_data.length);
-        
+    
     // var barsWidth  = window.getComputedStyle(document.querySelector(".candles")).width.replace('px', ''),
     //     barsHeight = window.getComputedStyle(document.querySelector(".candles")).height.replace('px', ''),
     
@@ -75,7 +75,7 @@ export default {
 section {
     width: 30vw;
     height: 44vh;
-    margin: 0 0 5vh 0;
+    margin: 0 2.666vw 5vh 0;
 }
 .caption {
     width: 100%;
