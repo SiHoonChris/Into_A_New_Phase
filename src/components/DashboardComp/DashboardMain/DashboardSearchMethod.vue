@@ -34,32 +34,18 @@ export default {
   },
   watch: {
     searchText: function(val) {
-      if(this.searchHold === '') {
-        this.searchResults 
-          = this.originalDatas
-              .filter(e => e.Assets.toLowerCase().includes(val.toLowerCase()) || e.Codes.toLowerCase().includes(val.toLowerCase()))
-              .filter(e => e.Hold.includes(this.searchHold)); 
-      } else {
-        this.searchResults 
-          = this.searchResults
-              .filter(e => e.Assets.toLowerCase().includes(val.toLowerCase()) || e.Codes.toLowerCase().includes(val.toLowerCase()))
-              .filter(e => e.Hold.includes(this.searchHold)); 
-      }
+      this.searchResults 
+        = this.originalDatas
+            .filter(e => e.Assets.toLowerCase().includes(val.toLowerCase()) || e.Codes.toLowerCase().includes(val.toLowerCase()))
+            .filter(e => e.Hold.includes(this.searchHold));
       this.$emit('datas', this.searchResults);
       document.querySelector('label').style.display = val !== '' ? "block" : "none" ;
     },
     searchHold: function(val) {
-      if(this.searchText === '') {
-        this.searchResults 
-          = this.originalDatas
-              .filter(e => e.Hold.includes(val))
-              .filter(e => e.Assets.toLowerCase().includes(this.searchText.toLowerCase()) || e.Codes.toLowerCase().includes(this.searchText.toLowerCase()));
-      } else {
-        this.searchResults 
-          = this.searchResults
-              .filter(e => e.Hold.includes(val))
-              .filter(e => e.Assets.toLowerCase().includes(this.searchText.toLowerCase()) || e.Codes.toLowerCase().includes(this.searchText.toLowerCase()));
-      }
+      this.searchResults 
+        = this.originalDatas
+            .filter(e => e.Hold.includes(val))
+            .filter(e => e.Assets.toLowerCase().includes(this.searchText.toLowerCase()) || e.Codes.toLowerCase().includes(this.searchText.toLowerCase()));
       this.$emit('datas', this.searchResults);
     }
   }
