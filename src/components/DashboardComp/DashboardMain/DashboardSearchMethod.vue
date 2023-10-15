@@ -1,8 +1,11 @@
 <template>
   <div id="setting">
-    <input id="search" type="text" placeholder="Search" v-model="searchText"/>
+    <div id="search-part">
+      <input id="search" name="search" type="text" placeholder="Search" v-model="searchText"/>
+      <label name="search">{{numOfResult}}</label>
+    </div>
     <select v-model="searchHold">
-      <option value="A">All</option>
+      <option value="">All</option>
       <option value="Y">Hold</option>
       <option value="N">Not Hold</option>
     </select>
@@ -10,38 +13,54 @@
 </template>
 
 <script>
+import basic_info from "@/assets/basic_info.json"
+
 export default {
   data() {
     return {
+      originalDatas: basic_info,
+      searchResults: [],
       searchText: '',
-      searchTarget: [],
-      searchHold: 'A'
+      searchHold: ''
     }
   },
   mounted(){
-    this.searchTarget = document.querySelectorAll(".caption span:first-child");
+    this.$emit('datas', this.originalDatas);
+  },
+  computed: {
+    numOfResult(){
+      return this.searchResults.length;
+    }
   },
   watch: {
     searchText: function(val) {
-      for(const T of this.searchTarget) {
-        T.parentNode.parentNode.style.display = 
-          T.textContent.toLowerCase().includes(val.toLowerCase()) || T.id.toLowerCase().includes(val.toLowerCase())
-           ? "block" : "none" ;
+      if(this.searchHold === '') {
+        this.searchResults 
+          = this.originalDatas
+              .filter(e => e.Assets.toLowerCase().includes(val.toLowerCase()) || e.Codes.toLowerCase().includes(val.toLowerCase()))
+              .filter(e => e.Hold.includes(this.searchHold)); 
+      } else {
+        this.searchResults 
+          = this.searchResults
+              .filter(e => e.Assets.toLowerCase().includes(val.toLowerCase()) || e.Codes.toLowerCase().includes(val.toLowerCase()))
+              .filter(e => e.Hold.includes(this.searchHold)); 
       }
+      this.$emit('datas', this.searchResults);
+      document.querySelector('label').style.display = val !== '' ? "block" : "none" ;
     },
     searchHold: function(val) {
-      for(const T of this.searchTarget) {
-        switch(val) {
-          case "Y" : 
-            T.parentNode.parentNode.style.display = T.className === "Y" ? "block" : "none" ; 
-            break;
-          case "N" : 
-            T.parentNode.parentNode.style.display = T.className === "N" ? "block" : "none" ; 
-            break;
-          default : 
-            T.parentNode.parentNode.style.display = "block";
-        }
+      if(this.searchText === '') {
+        this.searchResults 
+          = this.originalDatas
+              .filter(e => e.Hold.includes(val))
+              .filter(e => e.Assets.toLowerCase().includes(this.searchText.toLowerCase()) || e.Codes.toLowerCase().includes(this.searchText.toLowerCase()));
+      } else {
+        this.searchResults 
+          = this.searchResults
+              .filter(e => e.Hold.includes(val))
+              .filter(e => e.Assets.toLowerCase().includes(this.searchText.toLowerCase()) || e.Codes.toLowerCase().includes(this.searchText.toLowerCase()));
       }
+      this.$emit('datas', this.searchResults);
     }
   }
 }
@@ -55,6 +74,10 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
+#search-part{
+  display: flex;
+  align-items: flex-end;
+}
 #search {
   height: 3vh;
   border: 1px solid white;
@@ -64,6 +87,17 @@ export default {
 }
 ::placeholder {
     color: white;
+}
+label {
+  color: white;
+  margin-left: 0.5vw;
+  display: none;
+}
+label::before {
+  content: '('
+}
+label::after {
+  content: ')'
 }
 select {
     background: #1a1a1a;
