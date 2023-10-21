@@ -23,9 +23,9 @@
     <section id="d3">
       <svg></svg>
       <ul>
-        <li><input type="checkbox" id="check_bollinger" @click="createBollinger"/>Bollinger Band</li>
-        <li><input type="checkbox" id="check_ichimoku" @click="createIchimoku"/>Ichimoku Kinko</li>
-        <li><input type="checkbox" id="check_customed_tool_1" @click="createCustomed_1"/>Customed_Tool_1</li>
+        <li><input type="checkbox" id="check_bollinger" @click="addAnalysisTool('bollinger')"/>Bollinger Band</li>
+        <li><input type="checkbox" id="check_ichimoku" @click="addAnalysisTool('ichimoku')"/>Ichimoku Kinko</li>
+        <li><input type="checkbox" id="check_customed_tool_1" @click="addAnalysisTool('customed_tool_1')"/>Customed_Tool_1</li>
       </ul>
     </section>
     <AssetChartPopup1/>
@@ -43,7 +43,9 @@ export default {
     return {
       dropdownActivated: false,
       BasicInfo: basic_info,
-      idx: 0
+      idx: 0,
+      w: 0,
+      h: 0
     }
   },
   created(){
@@ -53,7 +55,9 @@ export default {
     });
   },
   mounted(){
-    this.$create_Candle(920, 360, ohlc_data);
+    this.w = window.getComputedStyle(document.querySelector("#d3")).width.replace('px',''); 
+    this.h = window.getComputedStyle(document.querySelector("#d3")).height.replace('px',''); 
+    this.$create_Candle(this.w, this.h, ohlc_data);
     this.displayFullName();
   },
   methods: {
@@ -74,9 +78,9 @@ export default {
 
       document.querySelector("#name-contents").addEventListener('mouseenter', moveToLeft);
       document.querySelector("#name-contents").addEventListener('mouseleave', function(){
-      if(len_out < len_in) {
+        if(len_out < len_in) {
           clearTimeout(moveToLeft);
-          in_div.removeAttribute('style')
+          in_div.removeAttribute('style');
         }
       });
     }, /* displayFullName() */
@@ -97,26 +101,12 @@ export default {
       }
     }, /* activateDropdown() */
 
-    createBollinger() {
-      this.$remove_chart(".candle"); this.$remove_chart(".tail");
-      document.querySelector("#check_bollinger").checked ?
-        this.$create_Bollinger(ohlc_data) : this.$remove_chart(".bollinger-part");
-      this.$create_Candle(920, 360, ohlc_data);
-    }, /* createBollinger() */
-
-    createIchimoku() {
-      this.$remove_chart(".candle"); this.$remove_chart(".tail");
-      document.querySelector("#check_ichimoku").checked ?
-        this.$create_Ichimoku(ohlc_data) : this.$remove_chart(".ichimoku-part")
-      this.$create_Candle(920, 360, ohlc_data);
-    }, /* createIchimoku() */
-    
-    createCustomed_1() {
-      this.$remove_chart(".candle"); this.$remove_chart(".tail");
-      document.querySelector("#check_customed_tool_1").checked ?
-        this.$create_Customed_Tool_1(ohlc_data) : this.$remove_chart(".customed_tool_1-part")
-      this.$create_Candle(920, 360, ohlc_data);
-    }, /* createCustomed_1() */
+    addAnalysisTool(name) {
+      this.$remove_chart(".candle, .tail, .x-axis, .y-axis");
+      document.querySelector(`#check_${name}`).checked ?
+        this.$create_AnalysisTool(name, ohlc_data) : this.$remove_chart(`.${name}-part`);
+      this.$create_Candle(this.w, this.h, ohlc_data);
+    } /* addAnalysisTool() */
 
   }
 }
@@ -126,6 +116,7 @@ export default {
 main {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     width: 100%;
     height: 100%;
 }
@@ -133,20 +124,21 @@ main {
 /* Chart 상단 */
 #info-n-setting {
     display: flex;
-    height: 10vh;
+    height: 12%;
+    width: 100%;
     justify-content: space-between;
     align-items: flex-end;
     border-bottom: 0.5px solid gray;
-    padding-left: 1vw;
-    padding-right: 0.5vw;
 }
 #info-n-setting > div {
+    padding-top: 0.8vh;
     padding-bottom: 0.8vh;
 }
 /* Chart 상단 - 종목명 */
 #info-n-setting #name-container {
     color: white;
     width: 30%;
+    margin-left: 1vw;
     font-size: 30px;
     font-weight: bold;
     overflow: hidden;
@@ -180,6 +172,7 @@ main {
     justify-content: space-between;
     width: 10%;
     height: 100%;
+    margin-right: 0.5vw;
     padding: 0;
     text-align: right;
     color: white;
@@ -210,13 +203,21 @@ main {
 /* Chart 하단(메인) */
 section {
     position: relative;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100vw;
+    height: 88%;
+    min-height: 88%;
     display: flex;
     justify-content: center;
     align-items: center;
+    resize: both;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .78)
 }
-/* #d3 svg {
-    border: 1px solid grey;
-} */
+#d3 svg > g {
+  border: 1px solid grey;
+}
 #d3 ul {
     display: none;
     position: absolute;

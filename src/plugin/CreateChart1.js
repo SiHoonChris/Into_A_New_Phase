@@ -2,34 +2,47 @@ export default {
     install(Vue) {
 
         Vue.config.globalProperties.$create_Candle =
-            function(w, h, ohlc_data) {      
-                document.querySelector("#d3 svg").setAttribute("width", w); //920
-                document.querySelector("#d3 svg").setAttribute("height", h); //360
+            function(w, h, ohlc_data) {  
+                document.querySelector("#d3 svg").setAttribute("width", w);
+                document.querySelector("#d3 svg").setAttribute("height", h);
 
                 let svg    = d3.select("#d3 svg"),
                     width  = svg.attr("width"),
                     height = svg.attr("height");
                 
-                let xScale = d3.scaleBand().range([0, width]).padding(0.1),
-                    yScale = d3.scaleLinear().range([height, 0]);
-                        
-                let g = svg.append("g")
-                        .attr("transform", "translate(" + 0 + "," + 0 + ")");
+                let xScale = d3.scaleBand()
+                                .range([0, width * 0.97])
+                                .padding(0.16)
+                                .domain(ohlc_data.map((d) => d.date)),
+                    yScale = d3.scaleLinear()
+                                .range([height * 0.97, 0])
+                                .domain(d3.extent([d3.max(ohlc_data, (d) => d.high + 5), d3.min(ohlc_data, (d) => d.low - 5)]));
                     
-                xScale.domain(ohlc_data.map((d) => d.date));
-                yScale.domain(d3.extent([d3.max(ohlc_data, (d) => d.high), d3.min(ohlc_data, (d) => d.low)]));
-                
+                let xAxis = d3.axisTop(xScale)
+                                .tickSizeInner(0),
+                    yAxis = d3.axisRight(yScale)
+                                .ticks(5)
+                                .tickSizeInner(-width*.97)
+                                .tickSizeOuter(0);
+                    
+                let g = svg.append("g");
+
                 /* x축 생성 */
                 g.append("g")
+                    .attr("class", "x-axis")
                     .attr("transform", "translate(0," + height + ")")
                     .attr("color", "white")
-                    .call(d3.axisBottom(xScale));
+                    .call(xAxis);
                 
                 /* y축 생성 */
                 g.append("g")
+                    .attr("class", "y-axis")
                     .attr("color", "white")
-                    .attr("transform", "translate(" + width + ", 0)")
-                    .call(d3.axisLeft(yScale));
+                    .attr("stroke-width", 0.3)
+                    .attr("transform", "translate(" + width * 0.97 + ", 0)")
+                    .call(yAxis);
+
+                document.querySelector("#d3 > svg > g > g.y-axis > path.domain").style.stroke="none";
                 
                 /* 캔들 몸통 */
                 g.selectAll(".candle")
@@ -57,6 +70,21 @@ export default {
             
             } // function : $create_Candle
 
+        Vue.config.globalProperties.$create_AnalysisTool =
+            function(name, ohlc_data) {
+                switch(name){
+                    case 'bollinger':
+                        this.$create_Bollinger(ohlc_data);
+                        break;
+                    case 'ichimoku':
+                        this.$create_Ichimoku(ohlc_data);
+                        break;
+                    case 'customed_tool_1':
+                        this.$create_Customed_Tool_1(ohlc_data);
+                        break; 
+                }
+            } // function : $create_AnalysisTool
+        
         Vue.config.globalProperties.$create_Bollinger = 
             function(ohlc_data) {
                 // N = (범위) , M = (표준편차 계수)
@@ -106,15 +134,16 @@ export default {
                 let svg    = d3.select("#d3 svg"),
                     width  = svg.attr("width"),
                     height = svg.attr("height");
-                
-                let xScale = d3.scaleBand().range([0, width]).padding(0.1),
-                    yScale = d3.scaleLinear().range([height, 0]);
-                        
-                let g = svg.append("g")
-                        .attr("transform", "translate(" + 15 + "," + 5 + ")");
-                    
-                xScale.domain(ohlc_data.map((d) => d.date));
-                yScale.domain(d3.extent([d3.max(ohlc_data, (d) => d.high), d3.min(ohlc_data, (d) => d.low)]));
+
+                let xScale = d3.scaleBand()
+                                .range([0, width * 0.97])
+                                .padding(0.16)
+                                .domain(ohlc_data.map((d) => d.date)),
+                    yScale = d3.scaleLinear()
+                                .range([height * 0.97, 0])
+                                .domain(d3.extent([d3.max(ohlc_data, (d) => d.high + 5), d3.min(ohlc_data, (d) => d.low - 5)]));
+        
+                let g = svg.append("g");
                 
                 /* 볼린저밴드 - 중앙선 */
                 g.append("path")
@@ -225,15 +254,16 @@ export default {
                 let svg    = d3.select("#d3 svg"),
                     width  = svg.attr("width"),
                     height = svg.attr("height");
-                
-                let xScale = d3.scaleBand().range([0, width]).padding(0.1),
-                    yScale = d3.scaleLinear().range([height, 0]);
-                        
-                let g = svg.append("g")
-                        .attr("transform", "translate(" + 15 + "," + 5 + ")");
-                    
-                xScale.domain(ohlc_data.map((d) => d.date));
-                yScale.domain(d3.extent([d3.max(ohlc_data, (d) => d.high), d3.min(ohlc_data, (d) => d.low)]));
+
+                let xScale = d3.scaleBand()
+                                .range([0, width * 0.97])
+                                .padding(0.16)
+                                .domain(ohlc_data.map((d) => d.date)),
+                    yScale = d3.scaleLinear()
+                                .range([height * 0.97, 0])
+                                .domain(d3.extent([d3.max(ohlc_data, (d) => d.high + 5), d3.min(ohlc_data, (d) => d.low - 5)]));
+
+                let g = svg.append("g");
                 
                 /* 일목균형표 전환선 */
                 g.append("path")
@@ -444,16 +474,16 @@ export default {
                         width  = svg.attr("width"),
                         height = svg.attr("height");
                 
-                    let xScale = d3.scaleBand().range([0, width]).padding(0.1),
-                        yScale = d3.scaleLinear().range([height, 0]);
-                        
-                    let g = svg.append("g")
-                               .attr("transform", "translate(" + 15 + "," + 5 + ")");
-                    
-                    xScale.domain(ohlc_data.map((d) => d.date));
-                    yScale.domain(d3.extent([d3.max(ohlc_data, (d) => d.high), d3.min(ohlc_data, (d) => d.low)]));
+                    let xScale = d3.scaleBand()
+                                    .range([0, width * 0.97])
+                                    .padding(0.16)
+                                    .domain(ohlc_data.map((d) => d.date)),
+                        yScale = d3.scaleLinear()
+                                    .range([height * 0.97, 0])
+                                    .domain(d3.extent([d3.max(ohlc_data, (d) => d.high + 5), d3.min(ohlc_data, (d) => d.low - 5)]));
+
+                    let g = svg.append("g");
                 
-                    
                     /* 볼린저밴드 - 상단선 */
                     g.append("path")
                         .datum(BB_BAND.slice(N-1, BB_BAND.length))

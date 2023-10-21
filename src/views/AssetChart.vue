@@ -17,27 +17,35 @@ import AssetChartMemo from "@/components/AssetChartComp/AssetChartMemo.vue"
 
 export default {
   components: { AssetChartMain, AssetChartFiles, AssetChartRecord, AssetChartOnWatch, AssetChartMemo },
-  
 }
 </script>
 
 <style scoped>
 #asset-chart {
     display: grid;
-    grid-template-rows: repeat(10, 10%);
+    grid-template-rows: repeat(20, 5%);
     grid-template-columns: repeat(10, 10%);
     width: 100%;
-    /* min-width: ; */
     height: 80vh;
     gap: 0;
     grid-template-areas:
       "c c c c c c r r m m" 
-      "c c c c c c r r m m"
-      "c c c c c c r r m m"
+      "c c c c c c r r m m" 
+      "c c c c c c r r m m" 
+      "c c c c c c r r m m" 
+      "c c c c c c r r m m" 
+      "c c c c c c r r m m" 
+      "c c c c c c r r m m" 
       "c c c c c c r r m m" 
       "c c c c c c w w m m"
       "c c c c c c w w m m" 
       "c c c c c c w w m m"
+      "c c c c c c w w m m"
+      "c c c c c c w w m m" 
+      "c c c c c c w w m m"
+      "c c c c c c w w m m"
+      "f f f f f f w w m m"
+      "f f f f f f w w m m"
       "f f f f f f w w m m"
       "f f f f f f w w m m"
       "f f f f f f w w m m";
