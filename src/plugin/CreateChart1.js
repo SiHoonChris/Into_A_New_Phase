@@ -8,18 +8,24 @@ export default {
 
                 let svg    = d3.select("#d3 svg"),
                     width  = svg.attr("width"),
-                    height = svg.attr("height");
+                    height = svg.attr("height")*0.95;
                 
                 let xScale = d3.scaleBand()
                                 .range([0, width * 0.97])
                                 .padding(0.16)
                                 .domain(ohlc_data.map((d) => d.date)),
                     yScale = d3.scaleLinear()
-                                .range([height * 0.97, 0])
+                                .range([height, 0])
                                 .domain(d3.extent([d3.max(ohlc_data, (d) => d.high + 5), d3.min(ohlc_data, (d) => d.low - 5)]));
-                    
-                let xAxis = d3.axisTop(xScale)
-                                .tickSizeInner(0),
+
+                let xLabels = xScale.domain().filter(function(d, i){
+                    if(i!==0 && i%40===0) return d;
+                });
+
+                let xAxis = d3.axisBottom(xScale)
+                                .tickValues(xLabels)
+                                .tickSizeInner(-height)
+                                .tickSizeOuter(0),
                     yAxis = d3.axisRight(yScale)
                                 .ticks(5)
                                 .tickSizeInner(-width*.97)
@@ -30,6 +36,8 @@ export default {
                 /* x축 생성 */
                 g.append("g")
                     .attr("class", "x-axis")
+                    .attr("color", "white")
+                    .attr("stroke-width", 0.3)
                     .attr("transform", "translate(0," + height + ")")
                     .attr("color", "white")
                     .call(xAxis);
@@ -41,8 +49,6 @@ export default {
                     .attr("stroke-width", 0.3)
                     .attr("transform", "translate(" + width * 0.97 + ", 0)")
                     .call(yAxis);
-
-                document.querySelector("#d3 > svg > g > g.y-axis > path.domain").style.stroke="none";
                 
                 /* 캔들 몸통 */
                 g.selectAll(".candle")

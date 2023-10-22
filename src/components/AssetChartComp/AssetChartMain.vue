@@ -215,9 +215,6 @@ section {
     overflow: hidden;
     background: rgba(0, 0, 0, .78)
 }
-#d3 svg > g {
-  border: 1px solid grey;
-}
 #d3 ul {
     display: none;
     position: absolute;

@@ -68,6 +68,7 @@ thead {
     display: block;
     width: 100%;
     border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
 }
 thead tr th:nth-child(1) {
     width: 5.86vw; /* 10% */
