@@ -1,9 +1,7 @@
 <template>
   <div id="portfolio-container">
-    <div id="portfolio-content">
-      <CurrentPortfolio/>
-      <CustomedPortfolio/>
-    </div>
+    <CurrentPortfolio/>
+    <CustomedPortfolio/>
   </div>
 </template>
 
@@ -21,14 +19,7 @@ export default {
         width: 100%;
         height: 80vh;
         display: flex;
-        justify-content: center;
+        justify-content: right;
         align-items: center;
-        padding-left: 4vw;
-    }
-    #portfolio-content {
-        display: flex;
-        justify-content: space-between;
-        width: 76%;
-        height: 70vh;
     }
 </style>
