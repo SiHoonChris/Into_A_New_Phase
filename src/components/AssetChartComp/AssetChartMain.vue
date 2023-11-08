@@ -20,14 +20,14 @@
         <div id="dropdown_off" @click="activateDropdown">Tool&nbsp;&nbsp;&nbsp;</div>
       </div>
     </div>
-    <section id="d3">
-      <svg></svg>
+    <div id="d3">
+      <svg width="100%" height="98%"></svg>
       <ul>
         <li><input type="checkbox" id="check_bollinger" @click="addAnalysisTool('bollinger')"/>Bollinger Band</li>
         <li><input type="checkbox" id="check_ichimoku" @click="addAnalysisTool('ichimoku')"/>Ichimoku Kinko</li>
         <li><input type="checkbox" id="check_customed_tool_1" @click="addAnalysisTool('customed_tool_1')"/>Customed_Tool_1</li>
       </ul>
-    </section>
+    </div>
     <AssetChartPopup1/>
   </main>
 </template>
@@ -43,9 +43,7 @@ export default {
     return {
       dropdownActivated: false,
       BasicInfo: basic_info,
-      idx: 0,
-      w: 0,
-      h: 0
+      idx: 0
     }
   },
   created(){
@@ -55,9 +53,7 @@ export default {
     });
   },
   mounted(){
-    this.w = window.getComputedStyle(document.querySelector("#d3")).width.replace('px',''); 
-    this.h = window.getComputedStyle(document.querySelector("#d3")).height.replace('px',''); 
-    this.$create_Candle(this.w, this.h, ohlc_data);
+    this.$create_Candle(ohlc_data); 
     this.displayFullName();
   },
   methods: {
@@ -105,7 +101,7 @@ export default {
       this.$remove_chart(".candle, .tail, .x-axis, .y-axis");
       document.querySelector(`#check_${name}`).checked ?
         this.$create_AnalysisTool(name, ohlc_data) : this.$remove_chart(`.${name}-part`);
-      this.$create_Candle(this.w, this.h, ohlc_data);
+      this.$create_Candle(ohlc_data);
     } /* addAnalysisTool() */
 
   }
@@ -129,6 +125,7 @@ main {
     justify-content: space-between;
     align-items: flex-end;
     border-bottom: 0.5px solid gray;
+    background: rgba(0, 0, 0, .78);
 }
 #info-n-setting > div {
     padding-top: 0.8vh;
@@ -201,19 +198,15 @@ main {
 }
 
 /* Chart 하단(메인) */
-section {
+#d3 {
     position: relative;
     width: 100%;
-    min-width: 100%;
-    max-width: 100vw;
     height: 88%;
-    min-height: 88%;
     display: flex;
     justify-content: center;
     align-items: center;
-    resize: both;
+    background: rgba(0, 0, 0, .78);
     overflow: hidden;
-    background: rgba(0, 0, 0, .78)
 }
 #d3 ul {
     display: none;

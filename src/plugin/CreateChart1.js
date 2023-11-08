@@ -2,14 +2,12 @@ export default {
     install(Vue) {
 
         Vue.config.globalProperties.$create_Candle =
-            function(w, h, ohlc_data) {  
-                document.querySelector("#d3 svg").setAttribute("width", w);
-                document.querySelector("#d3 svg").setAttribute("height", h);
+            function(ohlc_data) {  
+                let width  = window.getComputedStyle(document.querySelector('svg')).width.replace('px', '')*0.99,
+                    height = window.getComputedStyle(document.querySelector('svg')).height.replace('px', '')*0.97;
+                document.querySelector('svg').setAttribute("viewBox", `0 0 ${width} ${height}`);
 
-                let svg    = d3.select("#d3 svg"),
-                    width  = svg.attr("width"),
-                    height = svg.attr("height")*0.95;
-                
+                let svg    = d3.select("#d3 svg");
                 let xScale = d3.scaleBand()
                                 .range([0, width * 0.97])
                                 .padding(0.16)
@@ -137,10 +135,11 @@ export default {
                 }]`);
             
             
-                let svg    = d3.select("#d3 svg"),
-                    width  = svg.attr("width"),
-                    height = svg.attr("height");
-
+                let width  = window.getComputedStyle(document.querySelector('svg')).width.replace('px', '')*0.99,
+                    height = window.getComputedStyle(document.querySelector('svg')).height.replace('px', '')*0.97;
+                document.querySelector('svg').setAttribute("viewBox", `0 0 ${width} ${height}`);
+                
+                let svg    = d3.select("#d3 svg");
                 let xScale = d3.scaleBand()
                                 .range([0, width * 0.97])
                                 .padding(0.16)
@@ -257,10 +256,11 @@ export default {
                 }]`);
             
             
-                let svg    = d3.select("#d3 svg"),
-                    width  = svg.attr("width"),
-                    height = svg.attr("height");
-
+                let width  = window.getComputedStyle(document.querySelector('svg')).width.replace('px', '')*0.99,
+                    height = window.getComputedStyle(document.querySelector('svg')).height.replace('px', '')*0.97;
+                document.querySelector('svg').setAttribute("viewBox", `0 0 ${width} ${height}`);
+                
+                let svg    = d3.select("#d3 svg");
                 let xScale = d3.scaleBand()
                                 .range([0, width * 0.97])
                                 .padding(0.16)
@@ -476,10 +476,11 @@ export default {
                     }]`);
             
             
-                    let svg    = d3.select("#d3 svg"),
-                        width  = svg.attr("width"),
-                        height = svg.attr("height");
+                    let width  = window.getComputedStyle(document.querySelector('svg')).width.replace('px', '')*0.99,
+                        height = window.getComputedStyle(document.querySelector('svg')).height.replace('px', '')*0.97;
+                    document.querySelector('svg').setAttribute("viewBox", `0 0 ${width} ${height}`);
                 
+                    let svg = d3.select("#d3 svg");
                     let xScale = d3.scaleBand()
                                     .range([0, width * 0.97])
                                     .padding(0.16)

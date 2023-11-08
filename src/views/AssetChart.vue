@@ -54,6 +54,12 @@ export default {
     grid-area: c;
     border-right: 0.5px solid gray;
     border-bottom: 0.5px solid gray;
+    min-width: 60vw;
+    max-width: 100vw;
+    min-height: 60vh;
+    max-height: 80vh;
+    resize: both;
+    overflow: auto;
 }
 .files {
     grid-area: f;
