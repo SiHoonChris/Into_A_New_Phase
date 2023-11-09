@@ -1,59 +1,71 @@
 <template>
   <div id="filing-table">
-    <table>
-      <thead>
-        <tr>
-          <th>Form type</th>
-          <th>Form Description</th>
-          <th>Filing date</th>
-          <th>Reporting date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>144</td><td>Report of proposed sale of securities</td><td>2023-09-05</td><td></td>
-        </tr>
-        <tr>
-          <td>144</td><td>Report of proposed sale of securities</td><td>2023-08-30</td><td></td>
-        </tr>
-        <tr>
-          <td>144</td><td>Report of proposed sale of securities</td><td>2023-08-10</td><td></td>
-        </tr>
-        <tr>
-          <td>13F-HR</td><td>Quarterly report filed by institutional managers, Holdings</td><td>2023-08-04</td><td>2023-06-30</td>
-        </tr>	
-        <tr>
-          <td>144</td><td>Report of proposed sale of securities</td><td>2023-07-28</td><td></td>
-        </tr>
-        <tr>
-          <td>S-8</td><td>Securities to be offered to employees in employee benefit plans</td><td>2023-07-26</td><td></td>
-        </tr>
-        <tr>
-          <td>144</td><td>Report of proposed sale of securities</td><td>2023-09-05</td><td></td>
-        </tr>
-        <tr>
-          <td>144</td><td>Report of proposed sale of securities</td><td>2023-08-30</td><td></td>
-        </tr>
-        <tr>
-          <td>144</td><td>Report of proposed sale of securities</td><td>2023-08-10</td><td></td>
-        </tr>
-        <tr>
-          <td>13F-HR</td><td>Quarterly report filed by institutional managers, Holdings</td><td>2023-08-04</td><td>2023-06-30</td>
-        </tr>	
-        <tr>
-          <td>144</td><td>Report of proposed sale of securities</td><td>2023-07-28</td><td></td>
-        </tr>
-        <tr>
-          <td>S-8</td><td>Securities to be offered to employees in employee benefit plans</td><td>2023-07-26</td><td></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-head">
+      <table>
+        <thead>
+          <tr>
+            <th>Form type</th>
+            <th>Form Description</th>
+            <th>Filing date</th>
+            <th>Reporting date</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="table-body">
+      <table>
+        <tbody>
+          <tr>
+            <td>144</td><td>Report of proposed sale of securities</td><td>2023-09-05</td><td></td>
+          </tr>
+          <tr>
+            <td>144</td><td>Report of proposed sale of securities</td><td>2023-08-30</td><td></td>
+          </tr>
+          <tr>
+            <td>144</td><td>Report of proposed sale of securities</td><td>2023-08-10</td><td></td>
+          </tr>
+          <tr>
+            <td>13F-HR</td><td>Quarterly report filed by institutional managers, Holdings</td><td>2023-08-04</td><td>2023-06-30</td>
+          </tr>	
+          <tr>
+            <td>144</td><td>Report of proposed sale of securities</td><td>2023-07-28</td><td></td>
+          </tr>
+          <tr>
+            <td>S-8</td><td>Securities to be offered to employees in employee benefit plans</td><td>2023-07-26</td><td></td>
+          </tr>
+          <tr>
+            <td>144</td><td>Report of proposed sale of securities</td><td>2023-09-05</td><td></td>
+          </tr>
+          <tr>
+            <td>144</td><td>Report of proposed sale of securities</td><td>2023-08-30</td><td></td>
+          </tr>
+          <tr>
+            <td>144</td><td>Report of proposed sale of securities</td><td>2023-08-10</td><td></td>
+          </tr>
+          <tr>
+            <td>13F-HR</td><td>Quarterly report filed by institutional managers, Holdings</td><td>2023-08-04</td><td>2023-06-30</td>
+          </tr>	
+          <tr>
+            <td>144</td><td>Report of proposed sale of securities</td><td>2023-07-28</td><td></td>
+          </tr>
+          <tr>
+            <td>S-8</td><td>Securities to be offered to employees in employee benefit plans</td><td>2023-07-26</td><td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <style scoped>
 #filing-table {
     width: 100%;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
 }
 table {
     width: 100%;
@@ -62,82 +74,81 @@ table {
     border-collapse: collapse;
     color: white;
 }
+tr {
+    height: 3vh;
+}
 
 /* Table-Head */
-thead {
-    display: block;
+#filing-table > .table-head {
     width: 100%;
+    height: 25%;
+}
+#filing-table thead {
     border-bottom: 1px solid grey;
-    border-top: 1px solid grey;
 }
-thead tr th:nth-child(1) {
-    width: 5.86vw; /* 10% */
-    height: 6.4vh;
+#filing-table thead tr th:nth-child(1) {
+    width: 6%;
+    text-align: center;
+}
+#filing-table thead tr th:nth-child(2) {
+    width: 73%;
     text-align: center;
     border-left: 1px solid grey;
 }
-thead tr th:nth-child(2) {
-    width: 41.0vw; /* 70% */
-    height: 6.4vh;
+#filing-table thead tr th:nth-child(3) {
+    width: 10%;
     text-align: center;
     border-left: 1px solid grey;
 }
-thead tr th:nth-child(3) {
-    width: 5.9vw; /* 10% */
-    height: 6.4vh;
-    text-align: center;
-    border-left: 1px solid grey;
-}
-thead tr th:nth-child(4) {
-    width: 6.4vw; /* 10% */
-    height: 6.4vh;
+#filing-table thead tr th:nth-child(4) {
+    width: 11%;
     text-align: center;
     border-left: 1px solid grey;
 }
 
 /* Table-Body */
-tbody {
-    display: block;
-    width: 100%;
-    overflow: auto;
-    height: 17.1vh;
+#filing-table > .table-body {
+    width: calc(100% - 0.06vw);
+    height: 75%;
+    overflow-y: auto;
 }
-tbody tr td:nth-child(1) {
-    width: 6.0vw; /* 10% */
-    text-align: center;
-}
-tbody tr td:nth-child(2) {
-    width: 42vw; /* 70% */
-    text-align: left;
-    padding-left: 10px;
-}
-tbody tr td:nth-child(3) {
-    width: 6.0vw; /* 10% */
-    text-align: center;
-}
-tbody tr td:nth-child(4) {
-    width: 6.0vw; /* 10% */
-    text-align: center;
-}
-td {
-    border-left: 1px solid grey;
+#filing-table tr:not(:last-child) td{
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
 }
+#filing-table tr:last-child td {
+    border-right: 1px solid grey;
+}
+#filing-table tbody tr td:nth-child(1) {
+    width: 6%;
+    text-align: center;
+}
+#filing-table tbody tr td:nth-child(2) {
+    width: 73.9%;
+    text-align: left;
+    padding-left: 1%;
+}
+#filing-table tbody tr td:nth-child(3) {
+    width: 10%;
+    text-align: center;
+}
+#filing-table tbody tr td:nth-child(4) {
+    width: 10%;
+    text-align: center;
+}
 
 /* Scroll-bar */
-tbody::-webkit-scrollbar-track {
-  	background-color: black;
-    border-bottom: 1px solid gray;
+.table-body::-webkit-scrollbar-track {
+  background-color: black;
 }
-tbody::-webkit-scrollbar {
-  	background-color: black;
-  	width: 0.6vw;
+.table-body::-webkit-scrollbar {
+  background-color: black;
+  width: 0.6vw;
 }
-tbody::-webkit-scrollbar-thumb {
-  	border-radius: 30px;
-  	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  	background-color: #333;
+.table-body::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #333;
 }
 
 </style>
