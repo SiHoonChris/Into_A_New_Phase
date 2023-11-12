@@ -54,7 +54,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid grey;
 }
 table {
     width: 100%;
@@ -70,44 +69,42 @@ tr {
 /* Table-Head */
 #record-table > .table-head {
   width: 100%;
-  height: 22%;
+  height: 15%;
 }
 #record-table thead {
   border-bottom: 1px solid grey;
 }
 #record-table thead tr th:nth-child(1) {
-    width: 30%;
-    height: 3.6vh;
-    text-align: center;
+  width: 30%;
+  text-align: center;
 }
 #record-table thead tr th:nth-child(2) {
-    width: 70%; 
-    height: 3.6vh;
-    text-align: center;
-    border-left: 1px solid grey;
+  width: 70%; 
+  text-align: center;
+  border-left: 1px solid grey;
 }
 
 /* Table-Body */
 #record-table > .table-body {
-    width: calc(100% - 0.06vw);
-    height: 78%;
-    overflow-y: auto;
+  width: 100%;
+  height: 85%;
+  overflow-y: auto;
 }
 #record-table tr:not(:last-child) td{
-    border-right: 1px solid grey;
-    border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
 #record-table tr:last-child td {
-    border-right: 1px solid grey;
+  border-right: 1px solid grey;
 }
 #record-table tbody tr td:nth-child(1) {
-    width: 30%;
-    text-align: left;
-    padding-left: 1%;
+  width: 30%;
+  text-align: center;
 }
 #record-table tbody tr td:nth-child(2) {
-    width: 70%; 
-    text-align: center;
+  width: calc(70% - 0.55vw); 
+  text-align: left;
+  padding-left: 2%;
 }
 
 /* Scroll-bar */
@@ -116,7 +113,7 @@ tr {
 }
 .table-body::-webkit-scrollbar {
   background-color: black;
-  width: 0.6vw;
+  width: 0.55vw;
 }
 .table-body::-webkit-scrollbar-thumb {
   border-radius: 30px;

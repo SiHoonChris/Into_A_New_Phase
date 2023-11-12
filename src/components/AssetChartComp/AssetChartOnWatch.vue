@@ -72,7 +72,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid grey;
 }
 table {
     width: 100%;
@@ -88,44 +87,42 @@ tr {
 /* Table-Head */
 #onwatch-table > .table-head {
   width: 100%;
-  height: 22%;
+  height: 10%;
 }
 #onwatch-table thead {
   border-bottom: 1px solid grey;
 }
 #onwatch-table thead tr th:nth-child(1) {
-    width: 60%;
-    height: 3.6vh;
-    text-align: center;
+  width: 61.3%;
+  text-align: center;
 }
 #onwatch-table thead tr th:nth-child(2) {
-    width: 40%; 
-    height: 3.6vh;
-    text-align: center;
-    border-left: 1px solid grey;
+  width: 38.7%; 
+  text-align: center;
+  border-left: 1px solid grey;
 }
 
 /* Table-Body */
 #onwatch-table > .table-body {
-    width: calc(100% - 0.06vw);
-    height: 78%;
-    overflow-y: auto;
+  width: 100%;
+  height: 90%;
+  overflow-y: auto;
 }
 #onwatch-table tr:not(:last-child) td{
-    border-right: 1px solid grey;
-    border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
 #onwatch-table tr:last-child td {
-    border-right: 1px solid grey;
+  border-right: 1px solid grey;
 }
 #onwatch-table tbody tr td:nth-child(1) {
-    width: 60%;
-    text-align: left;
-    padding-left: 1%;
+  width: 61.3%;
+  text-align: left;
+  padding-left: 2%;
 }
 #onwatch-table tbody tr td:nth-child(2) {
-    width: 40%; 
-    text-align: center;
+  width: calc(38.7% - 0.55vw); 
+  text-align: center;
 }
 
 /* Scroll-bar */
@@ -134,7 +131,7 @@ tr {
 }
 .table-body::-webkit-scrollbar {
   background-color: black;
-  width: 0.6vw;
+  width: 0.55vw;
 }
 .table-body::-webkit-scrollbar-thumb {
   border-radius: 30px;

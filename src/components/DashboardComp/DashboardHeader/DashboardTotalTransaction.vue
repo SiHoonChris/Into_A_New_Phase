@@ -65,48 +65,48 @@ tr {
   border-bottom: 1px solid grey;
 }
 #transaction-list thead tr th:nth-child(1) {
-    width: 11%;
-    height: 3.6vh;
-    text-align: center;
+  width: 12%;
+  height: 3.6vh;
+  text-align: center;
 }
 #transaction-list thead tr th:nth-child(2) {
-    width: 19%; 
-    height: 3.6vh;
-    text-align: center;
-    border-left: 1px solid grey;
+  width: 19%; 
+  height: 3.6vh;
+  text-align: center;
+  border-left: 1px solid grey;
 }
 #transaction-list thead tr th:nth-child(3) {
-    width: 70%; 
-    height: 3.6vh;
-    text-align: center;
-    border-left: 1px solid grey;
+  width: 69%; 
+  height: 3.6vh;
+  text-align: center;
+  border-left: 1px solid grey;
 }
 
 /* Table-Body */
 #transaction-list > .table-body {
-    width: calc(100% - 0.06vw);
-    height: 78%;
-    overflow-y: auto;
+  width: 100%;
+  height: 78%;
+  overflow-y: auto;
 }
 #transaction-list tr:not(:last-child) td{
-    border-right: 1px solid grey;
-    border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
 #transaction-list tr:last-child td {
-    border-right: 1px solid grey;
+  border-right: 1px solid grey;
 }
 #transaction-list tbody tr td:nth-child(1) {
-    width: 11%;
-    text-align: center;
+  width: 12%;
+  text-align: center;
 }
 #transaction-list tbody tr td:nth-child(2) {
-    width: 19%; 
-    text-align: center;
+  width: 19%; 
+  text-align: center;
 }
 #transaction-list tbody tr td:nth-child(3) {
-    width: 69.9%; 
-    padding-left: 1%;
-    text-align: left;
+  width: calc(69% - 0.55vw); 
+  padding-left: 1%;
+  text-align: left;
 }
 
 /* Scroll-bar */
@@ -115,7 +115,7 @@ tr {
 }
 .table-body::-webkit-scrollbar {
   background-color: black;
-  width: 0.6vw;
+  width: 0.55vw;
 }
 .table-body::-webkit-scrollbar-thumb {
   border-radius: 30px;

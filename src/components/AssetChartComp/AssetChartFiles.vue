@@ -81,7 +81,7 @@ tr {
 /* Table-Head */
 #filing-table > .table-head {
     width: 100%;
-    height: 25%;
+    height: 34%;
 }
 #filing-table thead {
     border-bottom: 1px solid grey;
@@ -108,8 +108,8 @@ tr {
 
 /* Table-Body */
 #filing-table > .table-body {
-    width: calc(100% - 0.06vw);
-    height: 75%;
+    width: 100%;
+    height: 66%;
     overflow-y: auto;
 }
 #filing-table tr:not(:last-child) td{
@@ -124,7 +124,7 @@ tr {
     text-align: center;
 }
 #filing-table tbody tr td:nth-child(2) {
-    width: 73.9%;
+    width: 73%;
     text-align: left;
     padding-left: 1%;
 }
@@ -133,7 +133,7 @@ tr {
     text-align: center;
 }
 #filing-table tbody tr td:nth-child(4) {
-    width: 10%;
+    width: calc(11% - 0.55vw);
     text-align: center;
 }
 
@@ -143,7 +143,7 @@ tr {
 }
 .table-body::-webkit-scrollbar {
   background-color: black;
-  width: 0.6vw;
+  width: 0.55vw;
 }
 .table-body::-webkit-scrollbar-thumb {
   border-radius: 30px;

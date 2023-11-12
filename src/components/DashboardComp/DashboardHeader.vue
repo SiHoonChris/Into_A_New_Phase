@@ -74,7 +74,6 @@ nav:first-child {
 #total-transaction {
     width: 38vw;
     height: 16vh;
-    border: 1px solid grey;
 }
 
 </style>
