@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <table>
       <thead>
           <tr>
@@ -133,3 +133,4 @@ export default {
     }
 
 </style>
+-->

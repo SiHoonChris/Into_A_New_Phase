@@ -29,6 +29,9 @@
           <tr>
             <td>23.07.31</td><td>Sell/Buy</td><td>MSFT, Buy, 1 * 336.3000 USD </td>
           </tr>
+          <tr>
+            <td colspan="3">more</td>
+          </tr>
         </tbody>
       </table>
     </div>

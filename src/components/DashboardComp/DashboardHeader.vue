@@ -2,11 +2,9 @@
   <header>
     <div id="nav">
       <nav id="navigation">
-        <span @click="moveTo('main')">Main</span>
-        <span @click="moveTo('portfolio')">Portfolio</span>
-        <span @click="moveTo('balance_sheet')">Balance Sheet</span>
-        <span @click="moveTo('income_stat')">Income Stat.</span>
-        <span @click="moveTo('transaction')">Transaction</span>
+        <span @click="moveTo('search')">SEARCH</span>
+        <span @click="moveTo('portfolios')">PORTFOLIO PLANS</span>
+        <span @click="moveTo('financial-statements')">FINANCIAL STATEMENTS</span>
       </nav>
       <DashboardIndexCarousel/>
     </div>
@@ -43,7 +41,7 @@ header {
 }
 #nav {
     border: 1px solid gray;
-    width: 56vw;
+    width: 52vw;
     display: flex;
     flex-direction: column;
 }
@@ -72,7 +70,7 @@ nav:first-child {
     cursor: pointer;
 }
 #total-transaction {
-    width: 38vw;
+    width: 42vw;
     height: 16vh;
 }
 

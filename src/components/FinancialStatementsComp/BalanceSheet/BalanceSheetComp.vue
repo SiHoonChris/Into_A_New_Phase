@@ -1,8 +1,7 @@
 <template>
-  <div id="incm_tbl">
+  <div id="is_tbl">
     <div id="title">
-        <p>Income Statements</p>
-        <p>(Won, \)</p>
+        <p>Balance Sheets</p>
     </div>
     <table>
       <thead>
@@ -94,31 +93,26 @@
 </template>
 
 <style scoped>
-    #incm_tbl {
+    #is_tbl {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        height: 80vh;
-        padding-top: 2%;
-        overflow-y: scroll;
+        width: 50%;
+        height: 100vh;
+        border-right: 1px solid grey;
     }
     #title {
-        width: 80vw;
-        color: white;
-        border-bottom: 1px solid white;
-        margin-bottom: 5vh;
+        width: 40vw;
     }
-    #title p:nth-child(1) {
+    #title p {
+        color: white;
         font-weight: bold;
         font-size: 30px;
         text-align: center;
-    }
-    #title p:nth-child(2) {
-        margin-bottom: 1vh;
+        margin: 5vh 0;
     }
     table {
-        width: 80vw;
+        width: 96%;
         border: 1px solid white;
         color: white;
         border-collapse: collapse;
@@ -161,15 +155,15 @@
     }
 
     /* Scroll-bar */
-    #incm_tbl::-webkit-scrollbar-track {
+    #is_tbl::-webkit-scrollbar-track {
         background-color: black;
         border-bottom: 1px solid gray;
     }
-    #incm_tbl::-webkit-scrollbar {
+    #is_tbl::-webkit-scrollbar {
         background-color: black;
         width: 0.6vw;
     }
-    #incm_tbl::-webkit-scrollbar-thumb {
+    #is_tbl::-webkit-scrollbar-thumb {
         border-radius: 30px;
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color: #333;

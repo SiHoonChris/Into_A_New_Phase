@@ -2,12 +2,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainDashboard from '@/views/Dashboard.vue'
 
 const routes = [
-  { path: '/',            name: 'main',          component: MainDashboard                            },
-  { path: '/pf',          name: 'portfolio',     component: () => import('@/views/Portfolio.vue')    },
-  { path: '/bs',          name: 'balance_sheet', component: () => import('@/views/BalanceSheet.vue') },
-  { path: '/incm',        name: 'income_stat',   component: () => import('@/views/IncomeStat.vue')   },
-  { path: '/trsc',        name: 'transaction',   component: () => import('@/views/Transaction.vue')  },
-  { path: '/chart/:code', name: 'chart',         component: () => import('@/views/AssetChart.vue')   },
+  { // 첫 화면, 종목 검색
+    path: '/', 
+    name: 'search', 
+    component: MainDashboard
+  },
+  { // 포트폴리오 플랜 (도넛 차트)
+    path: '/portfolios', 
+    name: 'portfolios', 
+    component: () => import('@/views/Portfolio.vue')
+  },
+  { // 재무제표 (대차대조표, 손익계산서) 
+    path: '/financial-statements',
+    name: 'financial-statements',
+    component: () => import('@/views/FinancialStatements.vue')
+  },
+  { // 종목 상세 정보
+    path: '/detail/:code', 
+    name: 'detail', 
+    component: () => import('@/views/AssetChart.vue')
+  }
 ]
 
 const router = createRouter({

@@ -17,7 +17,7 @@ export default {
   props: ['name', 'state', 'code', 'hold'],
   methods:{
     moveToChartDetail: function(){
-      this.$router.push({name: 'chart', params: {code: this.code}});
+      this.$router.push({name: 'detail', params: {code: this.code}});
     }
   },
   mounted(){
