@@ -1,12 +1,16 @@
 <template>
   <div id="is_tbl">
     <div id="title">
-        <p>Balance Sheets</p>
+        <p>Income Statements</p>
     </div>
     <table>
       <thead>
           <tr>
-            <th></th><th>2023</th><th>2022</th><th>2021</th>
+            <th></th>
+            <th @click="setIsPeriod">4Q</th>
+            <th @click="setIsPeriod">3Q</th>
+            <th @click="setIsPeriod">2Q</th>
+            <th @click="setIsPeriod">1Q</th>
           </tr>
       </thead>
       <tbody>
@@ -14,60 +18,68 @@
             <td>{{(2985054+4643.45*1200+338.45*180+237.32*900+182738).toLocaleString()}}</td>
             <td>{{(28118856).toLocaleString()}}</td>
             <td>{{(3516536).toLocaleString()}}</td>
+            <td>{{(3516536).toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Marginal Profit</td>
             <td>{{(2985054+4643.45*1200+338.45*180+237.32*900+182738).toLocaleString()}}</td>
             <td>{{(28118856).toLocaleString()}}</td>
+            <td>{{(3516536).toLocaleString()}}</td>
             <td>{{(3516536).toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Dividend / Interest</td>
             <td>{{(61834122-(2985054+4643.45*1200+338.45*180+237.32*900+182738)).toLocaleString()}}</td>
             <td>{{(55730283-28118856).toLocaleString()}}</td>
             <td>{{(61803204-3516536).toLocaleString()}}</td>
+            <td>{{(61803204-3516536).toLocaleString()}}</td>
         </tr>
-
 
         <tr class="sector"><td>Net Income</td>
             <td>{{(2985054+4643.45*1200+338.45*180+237.32*900+182738).toLocaleString()}}</td>
             <td>{{(28118856).toLocaleString()}}</td>
             <td>{{(3516536).toLocaleString()}}</td>
+            <td>{{(3516536).toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Marginal Profit</td>
             <td>{{(2985054+4643.45*1200+338.45*180+237.32*900+182738).toLocaleString()}}</td>
             <td>{{(28118856).toLocaleString()}}</td>
+            <td>{{(3516536).toLocaleString()}}</td>
             <td>{{(3516536).toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Dividend / Interest</td>
             <td>{{(61834122-(2985054+4643.45*1200+338.45*180+237.32*900+182738)).toLocaleString()}}</td>
             <td>{{(55730283-28118856).toLocaleString()}}</td>
             <td>{{(61803204-3516536).toLocaleString()}}</td>
+            <td>{{(61803204-3516536).toLocaleString()}}</td>
         </tr>
-
 
         <tr class="sector"><td>Profit Margin Rate</td>
             <td>{{(61834122).toLocaleString()}}</td>
             <td>{{(55730283).toLocaleString()}}</td>
+            <td>{{(61803204).toLocaleString()}}</td>
             <td>{{(61803204).toLocaleString()}}</td>
         </tr>
         <tr class="sector"><td>ROE(%)</td>
             <td>{{(61834122).toLocaleString()}}</td>
             <td>{{(55730283).toLocaleString()}}</td>
             <td>{{(61803204).toLocaleString()}}</td>
+            <td>{{(61803204).toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Cash and cash equivalents</td>
             <td>{{(60946346).toLocaleString()}}</td>
             <td>{{(58484346).toLocaleString()}}</td>
+            <td>{{(47333134).toLocaleString()}}</td>
             <td>{{(47333134).toLocaleString()}}</td>
         </tr>
         <tr class="sub-sector"><td>Cash Flow</td>
             <td>{{(-27037439+6909160+678936+2523990).toLocaleString()}}</td>
             <td>{{(-27037439+6909160+678936).toLocaleString()}}</td>
             <td>{{(6909160+678936).toLocaleString()}}</td>
+            <td>{{(6909160+678936).toLocaleString()}}</td>
         </tr>
         <tr class="space"><td colspan="4"></td></tr>
 
-
         <tr class="sector"><td>Total Assets</td>
+            <td>{{(0).toLocaleString()}}</td>
             <td>{{(0).toLocaleString()}}</td>
             <td>{{(0).toLocaleString()}}</td>
             <td>{{(0).toLocaleString()}}</td>
@@ -76,15 +88,18 @@
             <td>{{(0).toLocaleString()}}</td>
             <td>{{(0).toLocaleString()}}</td>
             <td>{{(0).toLocaleString()}}</td>
+            <td>{{(0).toLocaleString()}}</td>
         </tr>
         <tr class="sector"><td>Total equity</td>
             <td>{{(61834122).toLocaleString()}}</td>
             <td>{{(55730283).toLocaleString()}}</td>
             <td>{{(61803204).toLocaleString()}}</td>
+            <td>{{(61803204).toLocaleString()}}</td>
         </tr>
         <tr class="sector"><td>Debt Rate</td>
             <td>{{(61834122).toLocaleString()}}</td>
             <td>{{(55730283).toLocaleString()}}</td>
+            <td>{{(61803204).toLocaleString()}}</td>
             <td>{{(61803204).toLocaleString()}}</td>
         </tr>
       </tbody>
@@ -92,14 +107,21 @@
   </div>
 </template>
 
+<script>
+export default {
+    methods: {
+        setIsPeriod() { this.$emit('IsPeriod', 'M'); }
+    }
+}
+</script>
+
 <style scoped>
     #is_tbl {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
+        width: 100%;
         height: 100vh;
-        border-right: 1px solid grey;
     }
     #title {
         width: 40vw;

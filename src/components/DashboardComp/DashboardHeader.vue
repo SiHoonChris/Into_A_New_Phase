@@ -9,17 +9,17 @@
       <DashboardIndexCarousel/>
     </div>
     <div id="total-transaction">
-      <DashboardTotalTransaction/>
+      <DashboardTransaction/>
     </div>
   </header>
 </template>
 
 <script>
 import DashboardIndexCarousel from "@/components/DashboardComp/DashboardHeader/DashboardIndexCarousel.vue"
-import DashboardTotalTransaction from "@/components/DashboardComp/DashboardHeader/DashboardTotalTransaction.vue"
+import DashboardTransaction from "@/components/DashboardComp/DashboardHeader/DashboardTransaction.vue"
 
 export default {
-  components: { DashboardIndexCarousel, DashboardTotalTransaction },
+  components: { DashboardIndexCarousel, DashboardTransaction },
   methods: {
     moveTo(where) {
       this.$router.push({name: where});

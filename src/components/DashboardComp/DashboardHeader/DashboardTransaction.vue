@@ -1,4 +1,4 @@
-<template><!-- 계좌에서 발생한 전체 거래 내역 (가장 최근 20개) -->
+<template><!-- 계좌에서 발생한 전체 거래 내역 (가장 최근 15개) & 더보기 버튼 -->
   <div id="transaction-list">
     <div class="table-head">
       <table>
@@ -30,13 +30,29 @@
             <td>23.07.31</td><td>Sell/Buy</td><td>MSFT, Buy, 1 * 336.3000 USD </td>
           </tr>
           <tr>
-            <td colspan="3">more</td>
+            <td colspan="3">
+              <div id="more-transaction" @click="moreTransaction">More</div>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
+    <TransactionPopup/>
   </div>
 </template>
+
+<script>
+import TransactionPopup from "@/components/DashboardComp/DashboardHeader/DashboardMoreTransactionPopup.vue"
+export default {
+  components: { TransactionPopup },
+  mounted(){},
+  methods: {
+    moreTransaction() { 
+      document.querySelector('#Transaction-Popup-Cont').style.display = 'flex';
+    }
+  }
+}
+</script>
 
 <style scoped>
 #transaction-list {
@@ -110,6 +126,11 @@ tr {
   width: calc(69% - 0.55vw); 
   padding-left: 1%;
   text-align: left;
+}
+#more-transaction:hover {
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* Scroll-bar */
