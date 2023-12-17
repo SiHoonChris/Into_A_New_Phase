@@ -31,55 +31,14 @@ export default {
   mounted() {
     let savedPortfolio = document.querySelectorAll('.customed');
     for(const i in savedPortfolio) {
-        this.donutChart(eval(`this.customed_${Number(i)+1}`), Number(i)+1);
-
+        this.$donutChart(eval(`this.customed_${Number(i)+1}`), Number(i)+1);
         savedPortfolio[i].addEventListener('click', function() {
             document.querySelector('#cur-portf-chart > svg').remove();
-            this.donutChartDetail(eval(`this.customed_${Number(i)+1}`));  // eval() : from 'String' to 'Variable'
+            this.$donutChartDetail(eval(`this.customed_${Number(i)+1}`));
         })
     }
   },
-  methods: {
-    donutChart: function(COMP_DATA, n) {
-      this.PF_Data = COMP_DATA;
-
-      const WIDTH  = Number(window.getComputedStyle(document.querySelector(`.customed:nth-of-type(${n})`)).width.replace('px', ''))*0.86,
-            HEIGHT = Number(window.getComputedStyle(document.querySelector(`.customed:nth-of-type(${n})`)).width.replace('px', '')),
-            MARGIN = 10,
-            RADIUS = Math.min(WIDTH, HEIGHT) / 2 - MARGIN;
-        
-      // append the svg object to the div
-      const svg = d3.select(`.customed:nth-of-type(${n})`)
-                    .append("svg")
-                    .attr("width", WIDTH)
-                    .attr("height", HEIGHT)
-                    .append("g")
-                    .attr("transform", "translate(" + WIDTH / 2 + "," + HEIGHT / 2 + ")");
-                  
-      // set the color scale
-      this.PF_Data_color.slice(0, Object.keys(this.PF_Data).length);
-      const color = d3.scaleOrdinal().range(this.PF_Data_color)
-  
-      // Compute the position of each group on the pie:
-      const pie = d3.pie().value(d => d[1]);
-      const data_ready = pie(Object.entries(this.PF_Data));
-  
-      var arc = d3.arc()
-                  .innerRadius(60)  // This is the size of the donut hole
-                  .outerRadius(RADIUS);
-
-      // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-      svg.selectAll('whatever')
-         .data(data_ready)
-         .enter()
-         .append('path')
-            .attr("class", "saved-donut")
-            .attr('d', arc)
-            .attr('fill', d => color(d.data[0]) )
-            .attr("stroke", "#171a1e")
-            .style("stroke-width", "1.0px");
-    } // function : donutChart
-   }
+  methods: {}
 }
 </script>
 

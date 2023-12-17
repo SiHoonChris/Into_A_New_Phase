@@ -2,7 +2,7 @@
   <header>
     <div id="nav">
       <nav id="navigation">
-        <span @click="moveTo('search')">SEARCH</span>
+        <span @click="moveTo('search')" class="on">SEARCH</span>
         <span @click="moveTo('portfolios')">PORTFOLIO PLANS</span>
         <span @click="moveTo('financial-statements')">FINANCIAL STATEMENTS</span>
       </nav>
@@ -23,6 +23,7 @@ export default {
   methods: {
     moveTo(where) {
       this.$router.push({name: where});
+      doucment.querySelector().addClassName = "";
     }
   }
 }
@@ -60,9 +61,12 @@ nav:first-child {
 }
 #navigation span {
     text-align: center;
-    color: silver;
+    color: rgba(192, 192, 192, 0.699);
     font-weight: bold;
     font-size: 20px;
+}
+#navigation span.on {
+    color: white;
 }
 #navigation span:hover {
     color: white;

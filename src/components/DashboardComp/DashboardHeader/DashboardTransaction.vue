@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import TransactionPopup from "@/components/DashboardComp/DashboardHeader/DashboardMoreTransactionPopup.vue"
+import TransactionPopup from "@/components/DashboardComp/DashboardHeader/MoreTransactionPopup.vue"
 export default {
   components: { TransactionPopup },
   mounted(){},
